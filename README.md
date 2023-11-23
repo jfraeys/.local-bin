@@ -6,7 +6,6 @@ This repository contains a collection of binary files that I use for various pur
 
 - `aactivator.py`
 - `setup_config`
-- `stow_setup`
 - `tmux_sessionizer`
 - `tmux_windownizer`
 
