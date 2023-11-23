@@ -1,4 +1,4 @@
-## My Binary Files
+## .local-bin
 
 This repository contains a collection of binary files that I use for various purposes.
 
