@@ -120,6 +120,7 @@ ln -s "$DOTFILES_DIR/nvim" ~/.config/nvim
 source ~/.zshrc
 tmux source ~/.tmux.conf
 
+
 # Inform the user and wait for input
 echo "Zsh, Tmux, Neovim, Go, and development tools configurations applied. Press Enter to start Zsh and Tmux."
 read -r
