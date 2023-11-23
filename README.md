@@ -20,6 +20,5 @@ These binary files serve specific functions in my development environment.
 Clone the repository and explore the binary files.
 
 ```bash
-git clone https://github.com/your-username/my-binary-files.git
-cd my-binary-files
- .local-bin
+git clone https://github.com/your-username/my-binary-files.git ~/.local/bin
+cd ~/.local/bin
