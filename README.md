@@ -5,7 +5,6 @@ This repository contains a collection of binary files that I use for various pur
 ## Binary Files
 
 - `aactivator.py`
-- `poetry`
 - `setup_config`
 - `stow_setup`
 - `tmux_sessionizer`
