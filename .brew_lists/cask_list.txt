@@ -1,0 +1,16 @@
+bitwarden
+brave-browser
+docker
+drawio
+google-drive
+iterm2
+logi-options-plus
+logitune
+maccy
+microsoft-auto-update
+microsoft-teams
+pycharm
+sparkle
+spotify
+vscodium
+zotero
