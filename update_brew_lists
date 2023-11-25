@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Default directories to store the lists
-BREW_LIST_DIR="$HOME/.local/bin/brew_lists"
-CASK_LIST_DIR="$HOME/.local/bin/brew_lists"
+BREW_LIST_DIR="$HOME/.local/bin/.brew_lists"
+CASK_LIST_DIR="$HOME/.local/bin/.brew_lists"
 BREW_LIST="$BREW_LIST_DIR/brew_list.txt"
 CASK_LIST="$CASK_LIST_DIR/cask_list.txt"
 
@@ -10,8 +10,10 @@ CASK_LIST="$CASK_LIST_DIR/cask_list.txt"
 update_lists() {
     echo "Updating brew list..."
     brew list > "$BREW_LIST"
+    chmod 664 "$BREW_LIST"
     echo "Updating cask list..."
     brew list --cask > "$CASK_LIST"
+    chmod 664 "$CASK_LIST"
 }
 
 # Function to install Homebrew and packages
@@ -48,6 +50,13 @@ save_lists() {
     echo "Lists saved successfully."
 }
 
+# Function to commit changes to Git
+commit_to_git() {
+    git add "$BREW_LIST" "$CASK_LIST"
+    git commit -m "Update brew lists"
+    git push origin main
+}
+
 # Check command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -57,7 +66,7 @@ while [[ $# -gt 0 ]]; do
             ;;
         --save-brew-dir)
             shift
-            BREW_LIST_DIR="$1"
+            brew autoupdate start
             ;;
         --save-cask-dir)
             shift
@@ -87,5 +96,8 @@ update_lists
 if [ -s "$BREW_LIST" ] || [ -s "$CASK_LIST" ]; then
     # Lists have changed, save the updated lists
     save_lists
+
+    # Commit changes to Git
+    commit_to_git
 fi
 
