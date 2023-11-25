@@ -41,6 +41,7 @@ skhd
 sqlite
 stow
 tmux
+tree
 tree-sitter
 unibilium
 utf8proc
