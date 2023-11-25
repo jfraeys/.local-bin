@@ -4,17 +4,15 @@ This repository contains a collection of handy binary files and scripts for vari
 
 ### Binary Files
 
-- `aactivator.py`
-- `setup_config`
-- `tmux_sessionizer`
-- `tmux_windownizer`
-- `update_brew_lists`
+1. **`aactivator.py`**
+2. **`setup_config`**
+3. **`tmux_sessionizer`**
+4. **`tmux_windownizer`**
+5. **`update_brew_lists`**
 
 These binary files serve specific functions in my development environment.
 
-### Scripts
-
-#### `setup_dev_env`
+### `setup_dev_env`
 
 #### A Script for Setting Up a Developer Environment**
 
@@ -64,7 +62,7 @@ The `setup_dev_env` script automates the configuration of a developer environmen
     ./update_brew_lists
     ```
 
-#### Additional Options
+### Additional Options
 
 - **Install Packages:**
     Use the `--install` flag to install Homebrew (if not installed) and the listed packages.
@@ -78,7 +76,7 @@ The `setup_dev_env` script automates the configuration of a developer environmen
     ./update_brew_lists --save-brew-dir ~/my_custom_brew_lists --save-cask-dir ~/my_custom_cask_lists
     ```
 
-#### Example Usage
+### Example Usage
 
 - **Update and Install Packages:**
     ```bash
@@ -91,4 +89,3 @@ The `setup_dev_env` script automates the configuration of a developer environmen
     ```
 
 Feel free to customize further based on your specific use case and preferences.
-
