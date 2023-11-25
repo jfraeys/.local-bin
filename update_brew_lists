@@ -1,0 +1,91 @@
+#!/bin/bash
+
+# Default directories to store the lists
+BREW_LIST_DIR="$HOME/.local/bin/brew_lists"
+CASK_LIST_DIR="$HOME/.local/bin/brew_lists"
+BREW_LIST="$BREW_LIST_DIR/brew_list.txt"
+CASK_LIST="$CASK_LIST_DIR/cask_list.txt"
+
+# Function to update the brew and cask lists
+update_lists() {
+    echo "Updating brew list..."
+    brew list > "$BREW_LIST"
+    echo "Updating cask list..."
+    brew list --cask > "$CASK_LIST"
+}
+
+# Function to install Homebrew and packages
+install_packages() {
+    # Install Homebrew if not installed
+    if ! command -v brew &> /dev/null; then
+        echo "Installing Homebrew..."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+
+    # Install brew packages
+    if [ -s "$BREW_LIST" ]; then
+        echo "Installing brew packages..."
+        xargs brew install < "$BREW_LIST"
+        echo "Brew packages installed successfully."
+    fi
+
+    # Install cask packages
+    if [ -s "$CASK_LIST" ]; then
+        echo "Installing cask packages..."
+        xargs brew install --cask < "$CASK_LIST"
+        echo "Cask packages installed successfully."
+    fi
+}
+
+# Function to save lists to specified directories
+save_lists() {
+    echo "Saving updated lists to specified directories..."
+
+    # Your logic to save the lists to the specified directories
+    cp "$BREW_LIST" "$BREW_LIST_DIR"
+    cp "$CASK_LIST" "$CASK_LIST_DIR"
+
+    echo "Lists saved successfully."
+}
+
+# Check command-line arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --install)
+            install_packages
+            exit 0
+            ;;
+        --save-brew-dir)
+            shift
+            BREW_LIST_DIR="$1"
+            ;;
+        --save-cask-dir)
+            shift
+            CASK_LIST_DIR="$1"
+            ;;
+        *)
+            echo "Invalid argument: $1"
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+# Check if the lists directories exist, if not, create them
+if [ ! -d "$BREW_LIST_DIR" ]; then
+    mkdir "$BREW_LIST_DIR"
+fi
+
+if [ ! -d "$CASK_LIST_DIR" ]; then
+    mkdir "$CASK_LIST_DIR"
+fi
+
+# Update the lists
+update_lists
+
+# Check if the lists have changed
+if [ -s "$BREW_LIST" ] || [ -s "$CASK_LIST" ]; then
+    # Lists have changed, save the updated lists
+    save_lists
+fi
+
