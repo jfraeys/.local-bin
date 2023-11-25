@@ -8,6 +8,7 @@ This repository contains a collection of binary files that I use for various pur
 - `setup_config`
 - `tmux_sessionizer`
 - `tmux_windownizer`
+- `update_brew_lists`
 
 ## Usage
 
