@@ -16,6 +16,8 @@ These binary files serve specific functions in my development environment.
 
 ### `update_brew_lists`
 
+**Subtitle: A Utility for Managing Homebrew and Homebrew Cask Packages**
+
 `update_brew_lists` is a utility script to manage and update lists of Homebrew and Homebrew Cask packages. It's particularly useful for maintaining a record of installed packages and automating the installation process on new machines.
 
 #### Getting Started
@@ -61,4 +63,4 @@ These binary files serve specific functions in my development environment.
     ./update_brew_lists --save-brew-dir ~/my_custom_brew_lists --save-cask-dir ~/my_custom_cask_lists
     ```
 
-Feel free to customize and expand this section based on the specific usage and features of `update_brew_lists`.
+Feel free to customize further based on your specific use case and preferences.
