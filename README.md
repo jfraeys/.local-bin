@@ -1,8 +1,8 @@
 ## .local-bin
 
-This repository contains a collection of binary files that I use for various purposes.
+This repository contains a collection of handy binary files for various purposes.
 
-## Binary Files
+### Binary Files
 
 - `aactivator.py`
 - `setup_config`
@@ -10,55 +10,52 @@ This repository contains a collection of binary files that I use for various pur
 - `tmux_windownizer`
 - `update_brew_lists`
 
-## Usage
+### Usage
 
 These binary files serve specific functions in my development environment.
 
 ### `update_brew_lists`
 
-**Subtitle: A Utility for Managing Homebrew and Homebrew Cask Packages**
+#### *A Utility for Managing Homebrew and Homebrew Cask Packages*
 
-`update_brew_lists` is a utility script to manage and update lists of Homebrew and Homebrew Cask packages. It's particularly useful for maintaining a record of installed packages and automating the installation process on new machines.
+`update_brew_lists` is a versatile script designed to manage and update lists of Homebrew and Homebrew Cask packages. It's particularly useful for keeping a record of installed packages and streamlining the installation process on new machines.
 
 #### Getting Started
 
-1. Clone the repository and navigate to the `.local-bin` directory.
-
+1. **Clone the Repository:**
     ```bash
     git clone https://github.com/jfraeys/.local-bin.git ~/.local/bin
     cd ~/.local/bin
     ```
 
-2. Run the `update_brew_lists` script without any arguments to update the Homebrew and Homebrew Cask lists.
-
+2. **Update Brew Lists:**
+    Run the script without arguments to update Homebrew and Homebrew Cask lists.
     ```bash
     ./update_brew_lists
     ```
 
 #### Additional Options
 
-- `--install`: Install Homebrew if not already installed, and install the listed packages.
-  
+- **Install Packages:**
+    Use the `--install` flag to install Homebrew (if not installed) and the listed packages.
     ```bash
     ./update_brew_lists --install
     ```
 
-- `--save-brew-dir` and `--save-cask-dir`: Save the updated lists to specific directories.
-  
+- **Custom Save Directories:**
+    Use `--save-brew-dir` and `--save-cask-dir` to save the updated lists to specific directories.
     ```bash
     ./update_brew_lists --save-brew-dir ~/my_custom_brew_lists --save-cask-dir ~/my_custom_cask_lists
     ```
 
 #### Example Usage
 
-- Update and install packages:
-
+- **Update and Install Packages:**
     ```bash
     ./update_brew_lists --install
     ```
 
-- Update lists and save them to custom directories:
-
+- **Update Lists and Save to Custom Directories:**
     ```bash
     ./update_brew_lists --save-brew-dir ~/my_custom_brew_lists --save-cask-dir ~/my_custom_cask_lists
     ```
