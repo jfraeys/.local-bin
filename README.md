@@ -16,7 +16,7 @@ These binary files serve specific functions in my development environment.
 
 #### `setup_dev_env`
 
-**Subtitle: A Script for Setting Up a Developer Environment**
+#### A Script for Setting Up a Developer Environment**
 
 The `setup_dev_env` script automates the configuration of a developer environment by installing essential tools and setting up common configurations. This is particularly useful for quickly preparing a new development environment or ensuring consistency across multiple machines.
 
