@@ -1,4 +1,4 @@
-# .local-bin Repository 
+# .local-bin
 
 Welcome to the .local-bin repository! This collection is carefully crafted to enhance and customize your development environment. Here's a detailed overview of its key components:
 
