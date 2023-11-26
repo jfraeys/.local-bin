@@ -2,7 +2,7 @@
 
 # Function to check if a command is available
 command_exists() {
-    command -v "$1" &> /dev/null
+    command -v "$1" 2>&1 >/dev/null
 }
 
 # Function to install dependencies based on the package manager
@@ -13,6 +13,20 @@ install_dependencies() {
         "yum") sudo $PACKAGE_MANAGER install -y "$@" ;;
     esac
 }
+
+# Default values for flags
+ENABLE_AUTO_UPDATE=true
+ENABLE_NOTIFICATION=true
+PACKAGE_MANAGER=""
+
+# Parse command-line arguments
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -a|--disable-auto-update) ENABLE_AUTO_UPDATE=false; shift ;;
+        -n|--disable-notification) ENABLE_NOTIFICATION=false; shift ;;
+        *) echo "Unknown parameter passed: $1"; exit 1 ;;
+    esac
+done
 
 # Check if running on macOS or Linux
 if [ "$(uname)" == "Darwin" ]; then
@@ -122,9 +136,21 @@ tmux source ~/.tmux.conf
 
 
 # Inform the user and wait for input
-echo "Zsh, Tmux, Neovim, Go, and development tools configurations applied. Press Enter to start Zsh and Tmux."
-read -r
+echo "Zsh, Tmux, Neovim, Go, and development tools configurations applied."
+
+# Enable Brew auto-update if the flag is set
+if [ "$ENABLE_AUTO_UPDATE" == true ]; then
+    brew autoupdate --start --upgrade --cleanup
+fi
+
+# Enable notifications if the flag is set
+if [ "$ENABLE_NOTIFICATION" == true ]; then
+    echo "Press Enter to start Zsh and Tmux."
+    read -r
+else
+    echo "Notifications are disabled. Press Enter to continue."
+    read -r
+fi
 
 # Start Zsh and Tmux
 zsh
-
