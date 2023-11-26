@@ -28,10 +28,6 @@ If you're new to .local-bin, follow these steps to get started:
 2. Navigate to the `.local-bin` directory: `cd .local-bin`
 3. Explore the documentation sections to learn about each script and its usage.
 
-## Contribution
-
-If you find any issues, have suggestions, or want to contribute to the development of `.local-bin`, please check the [contribution guidelines](CONTRIBUTING.md).
-
 Happy coding!
 
 
