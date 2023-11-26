@@ -2,7 +2,6 @@
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Build Status](https://travis-ci.org/your-username/.local-bin.svg?branch=main)](https://travis-ci.org/your-username/.local-bin)
-[![GitHub release](https://img.shields.io/github/release/your-username/.local-bin.svg)](https://github.com/your-username/.local-bin/releases)
 
 Welcome to the .local-bin repository! This collection is carefully crafted to enhance and customize your development environment. Here's a detailed overview of its key components:
 
