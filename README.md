@@ -4,7 +4,7 @@ Welcome to the .local-bin repository! This collection is carefully crafted to en
 
 ## Table of Contents
 
-- [aactivator.py](docs/aactivatorpy/Usage.md)
+- [aactivator.py](docs/aactivator/Usage.md)
 - [tmux_sessionizer](docs/tmux_sessionizer/Usage.md)
 - [tmux_windownizer](docs/tmux_windownizer/Usage.md)
 - [update_brew_lists](docs/update_brew_lists/Usage.md)
