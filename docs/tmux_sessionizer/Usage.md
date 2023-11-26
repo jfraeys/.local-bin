@@ -1,0 +1,27 @@
+## [tmux_sessionizer.sh](tmux_sessionizer.sh)
+
+This script simplifies the management of tmux sessions by providing an interactive interface to create or switch between sessions. If a session doesn't exist for a selected directory, it creates a new tmux session with the selected directory as the working directory.
+
+### Usage 
+
+Run the script without any arguments to interactively select a directory using `fzf`. Alternatively, you can provide a directory path as an argument to quickly switch to or create a session for that directory.
+
+```bash
+./tmux_sessionizer [directory]
+```
+- If a single argument is provided, the script will use it as the selected directory.
+- If no argument is provided, the script will use fd and fzf to interactively select a directory.
+
+### Example Usage 
+
+1. Interactively select a directory using fzf:
+```bash
+./tmux_sessionizer
+```
+
+2. Quickly switch to or create a session for a specific directory:
+```bash
+./tmux_sessionizer ~/projects/my_project
+```
+
+The script checks whether tmux is already running or if there is an existing tmux session for the selected directory. If not, it creates a new session; otherwise, it switches to the existing session.
