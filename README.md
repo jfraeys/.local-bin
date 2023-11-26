@@ -4,11 +4,11 @@ Welcome to the .local-bin repository! This collection is carefully crafted to en
 
 ## Table of Contents
 
-- [aactivator.py](#aactivatorpy)
-- [tmux_sessionizer](#tmux_sessionizer)
-- [tmux_windownizer](#tmux_windownizer)
-- [update_brew_lists](#update_brew_lists)
-- [setup_dev_env](#setup_dev_env)
+- [aactivator.py](docs/aactivatorpy)
+- [tmux_sessionizer](docs/tmux_sessionizer)
+- [tmux_windownizer](docs/tmux_windownizer)
+- [update_brew_lists](docs/update_brew_lists)
+- [setup_dev_env](docs/setup_dev_env)
 
 ## Binary Files
 
