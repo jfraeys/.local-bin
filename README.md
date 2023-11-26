@@ -147,4 +147,3 @@ The script uses the following default directories:
 - Cask List Directory: $HOME/.local/bin/.brew_lists
 
 Feel free to use this script to simplify sending commands to specific tmux windows based on branch names or other identifiers in your development workflow
-
