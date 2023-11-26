@@ -1,14 +1,8 @@
 # .local-bin
 
-Welcome to the .local-bin repository! This collection is carefully crafted to enhance and customize your development environment. Here's a detailed overview of its key components:
+[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Documentation-blue?logo=github)](https://jfraeys.github.io/.local-bin/docs/)
 
-## Table of Contents
-
-- [aactivator.py](aactivator.py)
-- [tmux_sessionizer](tmux_sessionizer)
-- [tmux_windownizer](tmux_windownizer)
-- [update_brew_lists](update_brew_lists)
-- [setup_dev_env](setup_dev_env)
+Welcome to the .local-bin repository! This collection is carefully crafted to enhance and customize your development environment. Below is a list of key components:
 
 ## Binary Files
 
@@ -20,5 +14,9 @@ Welcome to the .local-bin repository! This collection is carefully crafted to en
   - `-a` or `--disable-auto-update`: Disable Homebrew auto-updates.
   - `-n` or `--disable-notification`: Disable notifications during setup.
 
-Feel free to use this script to simplify sending commands to specific tmux windows based on branch names or other identifiers in your development workflow.
+## Documentation
+
+For detailed documentation, please visit the [GitHub Pages site](https://jfraeys.github.io/.local-bin/docs/).
+
+Feel free to use this script collection to enhance your development workflow!
 
