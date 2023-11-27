@@ -1,7 +1,7 @@
 # .local-bin
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Documentation-blue?logo=github)](https://jfraeys.github.io/.local-bin/)
-[![GitHub Workflow Status](https://github.com/jfraeys/.local-bin/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jfraeys/.local-bin/actions/workflows/pages/pages-build-deployment)
+[![pages-build-deployment](https://github.com/jfraeys/.local-bin/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/jfraeys/.local-bin/actions/workflows/pages/pages-build-deployment)
 
 Welcome to the .local-bin repository! This collection is carefully crafted to enhance and customize your development environment. Below is a list of key components:
 
