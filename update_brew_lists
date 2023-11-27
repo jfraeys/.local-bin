@@ -1,5 +1,6 @@
 #!/bin/bash
 
+BREW_PREFIX="/usr/local/bin/"
 # Default directories to store the lists
 BREW_LIST_DIR="$HOME/.local/bin/.brew_lists"
 CASK_LIST_DIR="$HOME/.local/bin/.brew_lists"
@@ -9,17 +10,17 @@ CASK_LIST="$CASK_LIST_DIR/cask_list.txt"
 # Function to update the brew and cask lists
 update_lists() {
     echo "Updating brew list..."
-    brew list > "$BREW_LIST"
+    "$BREW_PREFIX"brew list > "$BREW_LIST"
     chmod 664 "$BREW_LIST"
     echo "Updating cask list..."
-    brew list --cask > "$CASK_LIST"
+    "$BREW_PREFIX"brew list --cask > "$CASK_LIST"
     chmod 664 "$CASK_LIST"
 }
 
 # Function to install Homebrew and packages
 install_packages() {
     # Install Homebrew if not installed
-    if ! command -v brew &> /dev/null; then
+    if ! command -v "$BREW_PREFIX"brew &> /dev/null; then
         echo "Installing Homebrew..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
@@ -27,14 +28,14 @@ install_packages() {
     # Install brew packages
     if [ -s "$BREW_LIST" ]; then
         echo "Installing brew packages..."
-        xargs brew install < "$BREW_LIST"
+        xargs "$BREW_PREFIX"brew install < "$BREW_LIST"
         echo "Brew packages installed successfully."
     fi
 
     # Install cask packages
     if [ -s "$CASK_LIST" ]; then
         echo "Installing cask packages..."
-        xargs brew install --cask < "$CASK_LIST"
+        xargs "$BREW_PREFIX"brew install --cask < "$CASK_LIST"
         echo "Cask packages installed successfully."
     fi
 }
@@ -52,6 +53,7 @@ save_lists() {
 
 # Function to commit changes to Git
 commit_to_git() {
+    git pull
     git add "$BREW_LIST" "$CASK_LIST"
     git commit -m "Update brew lists"
     git push origin main
@@ -66,7 +68,7 @@ while [[ $# -gt 0 ]]; do
             ;;
         --save-brew-dir)
             shift
-            brew autoupdate start
+            "$BREW_PREFIX"brew autoupdate start
             ;;
         --save-cask-dir)
             shift
