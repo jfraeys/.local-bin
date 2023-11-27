@@ -53,10 +53,15 @@ save_lists() {
 
 # Function to commit changes to Git
 commit_to_git() {
+    current_dir=$PWD
+    echo $current_dir
+    cd $HOME/.local/bin || exit
     git pull
+    echo "$BREW_LIST"
     git add "$BREW_LIST" "$CASK_LIST"
     git commit -m "Update brew lists"
     git push origin main
+    cd "$current_dir" || exit
 }
 
 # Check command-line arguments
