@@ -25,6 +25,18 @@ jobs:
         with:
           python-version: 3.x
 
+      - name: Install tmux on macOS
+        if: startsWith(matrix.os, 'macos')
+        run: |
+          if ! command -v brew &> /dev/null; then
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          fi
+          brew install tmux
+
+      - name: Install tmux on Ubuntu
+        if: startsWith(matrix.os, 'ubuntu')
+        run: sudo apt-get install tmux
+
       - name: Test aactivator.py
         run: |
           python aactivator.py
@@ -48,3 +60,4 @@ jobs:
         run: |
           chmod +x setup_dev_environment.sh
           ./setup_dev_environment.sh
+
