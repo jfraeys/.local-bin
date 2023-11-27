@@ -3,7 +3,7 @@
 [![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Documentation-blue?logo=github)](https://jfraeys.github.io/.local-bin/)
 [![pages-build-deployment](https://github.com/jfraeys/.local-bin/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/jfraeys/.local-bin/actions/workflows/pages/pages-build-deployment)
 
-Welcome to the .local-bin repository! Find key components below to enhance your development environment.
+Welcome to the .local-bin repository! Find key components below to enhance your development environment. Below is a list of key components:
 
 ## Binary Files
 
