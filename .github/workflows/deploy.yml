@@ -11,38 +11,38 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Git
         run: |
-          git config --global user.email "your-email@example.com"
-          git config --global user.name "Your Name"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
 
       - name: Deploy aactivator.py
         run: |
-          cp aactivator.py /path/to/your/deployment/directory
-          git add /path/to/your/deployment/directory/aactivator.py
+          cp aactivator.py .
+          git add aactivator.py
           git commit -m "Deploy aactivator.py"
           git push
 
       - name: Deploy tmux_sessionizer
         run: |
-          cp tmux_sessionizer /path/to/your/deployment/directory
-          git add /path/to/your/deployment/directory/tmux_sessionizer
+          cp tmux_sessionizer .
+          git add tmux_sessionizer
           git commit -m "Deploy tmux_sessionizer"
           git push
 
       - name: Deploy tmux_windownizer
         run: |
-          cp tmux_windownizer /path/to/your/deployment/directory
-          git add /path/to/your/deployment/directory/tmux_windownizer
+          cp tmux_windownizer .
+          git add tmux_windownizer
           git commit -m "Deploy tmux_windownizer"
           git push
 
       - name: Deploy setup_dev_environment.sh
         run: |
-          cp setup_dev_environment.sh /path/to/your/deployment/directory
-          git add /path/to/your/deployment/directory/setup_dev_environment.sh
+          cp setup_dev_environment.sh .
+          git add setup_dev_environment.sh
           git commit -m "Deploy setup_dev_environment.sh"
           git push
 
