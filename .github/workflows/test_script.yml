@@ -58,6 +58,6 @@ jobs:
 
       - name: Test setup_dev_environment.sh
         run: |
-          chmod +x setup_dev_environment.sh
-          ./setup_dev_env.sh
+          chmod +x setup_dev_env
+          ./setup_dev_env
 
