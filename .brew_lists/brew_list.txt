@@ -18,6 +18,7 @@ libssh2
 libtermkey
 libuv
 libvterm
+libyaml
 luajit
 luv
 lz4
@@ -34,7 +35,13 @@ pcre2
 pkg-config
 postgresql@14
 pyenv
+pygments
+python-certifi
+python-packaging
+python-setuptools
 python@3.11
+python@3.12
+pyyaml
 readline
 ripgrep
 skhd
