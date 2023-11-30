@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Explicitly start tmux server
+tmux start-server
+
 # Get the branch name without using 'basename'
 branch_name=$(git rev-parse --abbrev-ref HEAD)
 
