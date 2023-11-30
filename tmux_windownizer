@@ -13,6 +13,7 @@ target="$session_name:$clean_name"
 
 # Start tmux server if not already running
 if [ -z "$(tmux list-sessions 2>/dev/null)" ]; then
+  sleep 1
   tmux new-session -d -s "$session_name"
 fi
 
