@@ -24,7 +24,25 @@ update_lists() {
 
 # Function to install Homebrew and packages
 install_packages() {
-    # ... (unchanged)
+    # Install Homebrew if not installed
+    if ! command -v "$BREW_PREFIX"brew &> /dev/null; then
+        echo "Installing Homebrew..."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+
+    # Install brew packages
+    if [ -s "$BREW_LIST" ]; then
+        echo "Installing brew packages..."
+        xargs "$BREW_PREFIX"brew install < "$BREW_LIST"
+        echo "Brew packages installed successfully."
+    fi
+
+    # Install cask packages
+    if [ -s "$CASK_LIST" ]; then
+        echo "Installing cask packages..."
+        xargs "$BREW_PREFIX"brew install --cask < "$CASK_LIST"
+        echo "Cask packages installed successfully."
+    fi
 }
 
 # Function to save lists to specified directories
@@ -37,6 +55,7 @@ save_lists() {
     echo "Lists saved successfully."
 }
 
+# Function to commit changes to Git
 # Function to commit changes to Git
 commit_to_git() {
     current_dir=$PWD
@@ -90,8 +109,5 @@ if are_lists_different "$BREW_LIST.new" "$BREW_LIST" || are_lists_different "$CA
 
     # Commit changes to Git
     commit_to_git
-else
-    # Lists are the same, perform a soft shutdown or any other desired action
-    echo "Brew lists are the same. Soft shutdown..."
-    # Add your soft shutdown logic here
 fi
+
