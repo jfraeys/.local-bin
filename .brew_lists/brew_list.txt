@@ -13,12 +13,14 @@ icu4c
 krb5
 libevent
 libgit2
+liblinear
 libnghttp2
 libssh2
 libtermkey
 libuv
 libvterm
 libyaml
+lua
 luajit
 luv
 lz4
@@ -27,6 +29,7 @@ mpdecimal
 msgpack
 ncurses
 neovim
+nmap
 node
 oniguruma
 openssl@3
