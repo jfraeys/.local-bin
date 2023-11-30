@@ -5,6 +5,8 @@ BREW_LIST_DIR="$HOME/.local/bin/.brew_lists"
 CASK_LIST_DIR="$HOME/.local/bin/.brew_lists"
 BREW_LIST="$BREW_LIST_DIR/brew_list.txt"
 CASK_LIST="$CASK_LIST_DIR/cask_list.txt"
+NEW_BREW_LIST="$BREW_LIST_DIR/brew_list.txt.new"
+NEW_CASK_LIST="$CASK_LIST_DIR/cask_list.txt.new"
 
 # Function to check if the lists are different
 are_lists_different() {
@@ -14,12 +16,12 @@ are_lists_different() {
 # Function to update the brew and cask lists
 update_lists() {
     echo "Updating brew list..."
-    "$BREW_PREFIX"brew list > "$BREW_LIST.new"
-    chmod 664 "$BREW_LIST.new"
-    
+    "$BREW_PREFIX"brew list > "$NEW_BREW_LIST"
+    chmod 664 "$NEW_BREW_LIST"
+
     echo "Updating cask list..."
-    "$BREW_PREFIX"brew list --cask > "$CASK_LIST.new"
-    chmod 664 "$CASK_LIST.new"
+    "$BREW_PREFIX"brew list --cask > "$NEW_CASK_LIST"
+    chmod 664 "$NEW_CASK_LIST"
 }
 
 # Function to install Homebrew and packages
@@ -49,13 +51,12 @@ install_packages() {
 save_lists() {
     echo "Saving updated lists to specified directories..."
 
-    mv "$BREW_LIST.new" "$BREW_LIST"
-    mv "$CASK_LIST.new" "$CASK_LIST"
+    mv "$NEW_BREW_LIST" "$BREW_LIST"
+    mv "$NEW_CASK_LIST" "$CASK_LIST"
 
     echo "Lists saved successfully."
 }
 
-# Function to commit changes to Git
 # Function to commit changes to Git
 commit_to_git() {
     current_dir=$PWD
@@ -103,11 +104,10 @@ fi
 update_lists
 
 # Check if the lists have changed
-if are_lists_different "$BREW_LIST.new" "$BREW_LIST" || are_lists_different "$CASK_LIST.new" "$CASK_LIST"; then
+if are_lists_different "$NEW_BREW_LIST" "$BREW_LIST" || are_lists_different "$NEW_CASK_LIST" "$CASK_LIST"; then
     # Lists have changed, save the updated lists
     save_lists
 
     # Commit changes to Git
     commit_to_git
 fi
-
