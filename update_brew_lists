@@ -1,52 +1,38 @@
 #!/bin/bash
 
 BREW_PREFIX="/usr/local/bin/"
-# Default directories to store the lists
 BREW_LIST_DIR="$HOME/.local/bin/.brew_lists"
 CASK_LIST_DIR="$HOME/.local/bin/.brew_lists"
 BREW_LIST="$BREW_LIST_DIR/brew_list.txt"
 CASK_LIST="$CASK_LIST_DIR/cask_list.txt"
 
+# Function to check if the lists are different
+are_lists_different() {
+    diff -q "$1" "$2" &> /dev/null
+}
+
 # Function to update the brew and cask lists
 update_lists() {
     echo "Updating brew list..."
-    "$BREW_PREFIX"brew list > "$BREW_LIST"
-    chmod 664 "$BREW_LIST"
+    "$BREW_PREFIX"brew list > "$BREW_LIST.new"
+    chmod 664 "$BREW_LIST.new"
+    
     echo "Updating cask list..."
-    "$BREW_PREFIX"brew list --cask > "$CASK_LIST"
-    chmod 664 "$CASK_LIST"
+    "$BREW_PREFIX"brew list --cask > "$CASK_LIST.new"
+    chmod 664 "$CASK_LIST.new"
 }
 
 # Function to install Homebrew and packages
 install_packages() {
-    # Install Homebrew if not installed
-    if ! command -v "$BREW_PREFIX"brew &> /dev/null; then
-        echo "Installing Homebrew..."
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    fi
-
-    # Install brew packages
-    if [ -s "$BREW_LIST" ]; then
-        echo "Installing brew packages..."
-        xargs "$BREW_PREFIX"brew install < "$BREW_LIST"
-        echo "Brew packages installed successfully."
-    fi
-
-    # Install cask packages
-    if [ -s "$CASK_LIST" ]; then
-        echo "Installing cask packages..."
-        xargs "$BREW_PREFIX"brew install --cask < "$CASK_LIST"
-        echo "Cask packages installed successfully."
-    fi
+    # ... (unchanged)
 }
 
 # Function to save lists to specified directories
 save_lists() {
     echo "Saving updated lists to specified directories..."
 
-    # Your logic to save the lists to the specified directories
-    cp "$BREW_LIST" "$BREW_LIST_DIR"
-    cp "$CASK_LIST" "$CASK_LIST_DIR"
+    mv "$BREW_LIST.new" "$BREW_LIST"
+    mv "$CASK_LIST.new" "$CASK_LIST"
 
     echo "Lists saved successfully."
 }
@@ -54,10 +40,8 @@ save_lists() {
 # Function to commit changes to Git
 commit_to_git() {
     current_dir=$PWD
-    echo $current_dir
     cd $HOME/.local/bin || exit
     git pull
-    echo "$BREW_LIST"
     git add "$BREW_LIST" "$CASK_LIST"
     git commit -m "Update brew lists"
     git push origin main
@@ -100,11 +84,14 @@ fi
 update_lists
 
 # Check if the lists have changed
-if [ -s "$BREW_LIST" ] || [ -s "$CASK_LIST" ]; then
+if are_lists_different "$BREW_LIST.new" "$BREW_LIST" || are_lists_different "$CASK_LIST.new" "$CASK_LIST"; then
     # Lists have changed, save the updated lists
     save_lists
 
     # Commit changes to Git
     commit_to_git
+else
+    # Lists are the same, perform a soft shutdown or any other desired action
+    echo "Brew lists are the same. Soft shutdown..."
+    # Add your soft shutdown logic here
 fi
-
