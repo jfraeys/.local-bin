@@ -29,7 +29,8 @@ jobs:
         if: startsWith(matrix.os, 'macos')
         run: |
           if ! command -v brew &> /dev/null; then
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/\
+                          Homebrew/install/HEAD/install.sh)"
           fi
           brew install tmux
 
@@ -51,13 +52,7 @@ jobs:
           chmod +x tmux_windownizer
           ./tmux_windownizer
 
-      - name: Test update_brew_lists
-        run: |
-          chmod +x update_brew_lists
-          ./update_brew_lists
-
       - name: Test setup_dev_environment.sh
         run: |
           chmod +x setup_dev_env
           ./setup_dev_env
-

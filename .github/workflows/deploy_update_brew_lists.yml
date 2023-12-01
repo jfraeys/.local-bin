@@ -1,3 +1,4 @@
+---
 name: Update Brew Lists
 
 on:
@@ -14,7 +15,8 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.email "${{ github.actor }}@users.noreply.\
+                                          github.com"
           git config --global user.name "${{ github.actor }}"
 
       - name: Update update_brew_lists
