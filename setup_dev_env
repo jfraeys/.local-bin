@@ -36,6 +36,11 @@ if [ "$(uname)" == "Darwin" ]; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         PACKAGE_MANAGER="brew"
     fi
+
+    # Enable Brew auto-update if the flag is set
+    if [ "$ENABLE_AUTO_UPDATE" == true ]; then
+        brew autoupdate --start --upgrade --cleanup
+    fi
 elif [ "$(uname)" == "Linux" ]; then
     # Check if on Linux and use the appropriate package manager
     if command_exists apt-get; then
@@ -137,11 +142,6 @@ tmux source ~/.tmux.conf
 
 # Inform the user and wait for input
 echo "Zsh, Tmux, Neovim, Go, and development tools configurations applied."
-
-# Enable Brew auto-update if the flag is set
-if [ "$ENABLE_AUTO_UPDATE" == true ]; then
-    brew autoupdate --start --upgrade --cleanup
-fi
 
 # Enable notifications if the flag is set
 if [ "$ENABLE_NOTIFICATION" == true ]; then

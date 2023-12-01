@@ -32,11 +32,20 @@ jobs:
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/\
                           Homebrew/install/HEAD/install.sh)"
           fi
-          brew install tmux
+          brew install tmux fd fzf
 
       - name: Install tmux on Ubuntu
         if: startsWith(matrix.os, 'ubuntu')
-        run: sudo apt-get install tmux
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tmux
+          sudo apt-get install -y fd-find
+          sudo apt-get install -y fzf
+
+      - name: Set up tmux environment
+        run: |
+          tmux new-session -d -s mysession
+          tmux new-window -t mysession:1 -n mywindow
 
       - name: Test aactivator.py
         run: |
