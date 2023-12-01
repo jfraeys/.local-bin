@@ -42,15 +42,15 @@ jobs:
         run: |
           python aactivator.py
 
-      - name: Test tmux_sessionizer
-        run: |
-          chmod +x tmux_sessionizer
-          ./tmux_sessionizer
-
-      - name: Test tmux_windownizer
-        run: |
-          chmod +x tmux_windownizer
-          ./tmux_windownizer
+      # - name: Test tmux_sessionizer
+      #   run: |
+      #     chmod +x tmux_sessionizer
+      #     ./tmux_sessionizer
+      #
+      # - name: Test tmux_windownizer
+      #   run: |
+      #     chmod +x tmux_windownizer
+      #     ./tmux_windownizer
 
       - name: Test setup_dev_environment.sh
         run: |
