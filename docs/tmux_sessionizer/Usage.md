@@ -1,4 +1,4 @@
-## [tmux_sessionizer.sh](../../tmux_sessionizer.sh)
+## [tmux_sessionizer](../../tmux_sessionizer)
 
 This script simplifies the management of tmux sessions by providing an interactive interface to create or switch between sessions. If a session doesn't exist for a selected directory, it creates a new tmux session with the selected directory as the working directory.
 
