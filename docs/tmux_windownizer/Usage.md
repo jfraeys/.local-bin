@@ -1,4 +1,4 @@
-## [tmux_windownizer.sh](../../tmux_windownizer.sh) 
+## [tmux_windownizer](../../tmux_windownizer) 
 
 This script is designed to streamline the process of sending commands to a specific tmux window. It takes a branch name (or any identifier) as an argument, creates a new window if it doesn't exist in the current tmux session, and sends the provided command to that window.
 
