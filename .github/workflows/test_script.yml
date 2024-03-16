@@ -59,11 +59,11 @@ jobs:
 
       - name: Test tmux_sessionizer
         run: |
-          bats tests/test_tmux_sessionizer.bats
+          bats ../tests/test_tmux_sessionizer.bats
 
       - name: Test tmux_windownizer
         run: |
-          bats tests/test_tmux_windownizer.bats
+          bats ../tests/test_tmux_windownizer.bats
 
       - name: Test setup_dev_environment.sh
         run: |
