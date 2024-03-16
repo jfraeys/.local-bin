@@ -1,5 +1,11 @@
 #!/usr/bin/env bats
 
+cleanup_session() {
+  tmux kill-session -t "$SESSION_NAME"
+}
+
+trap 'cleanup_session' EXIT
+
 @test "Script creates a tmux session" {
   TMP_DIR=$(mktemp -d)
   ORIGINAL_SESSION=$(tmux display-message -p "#S")
@@ -20,7 +26,7 @@
   # Return to the original session
   tmux switch-client -n -t="$ORIGINAL_SESSION"
 
-  # Clean up
-  tmux kill-session -t="$SESSION_NAME"
+  # Clean up (Note: This line is no longer necessary)
+  # tmux kill-session -t="$SESSION_NAME"
   rm -r "$TMP_DIR"
 }
