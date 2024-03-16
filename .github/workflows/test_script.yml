@@ -17,6 +17,11 @@ jobs:
         os: [macos-latest, ubuntu-latest]
 
     steps:
+      - name: install bats
+        uses: mig4/setup-bats@v1
+        with:
+          bats-version: 1.2.1
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
