@@ -14,7 +14,7 @@ Welcome to the .local-bin repository! Find key components below to enhance your 
 - **[setup_dev_environment.sh](setup_dev_env):** This script automates the setup of a development environment by installing essential tools, configuring common settings, and providing options for customization. It supports the following options:
   - `-a` or `--disable-auto-update`: Disable Homebrew auto-updates.
   - `-n` or `--disable-notification`: Disable notifications during setup.
-- [docker_check](docker_check/Usage.md):** This script automates the process of ensuring Docker is installed and running before executing Docker-related commands. If Docker is not installed, it provides an option to install it via Homebrew.
+- **[docker_check](docker_check):** This script automates the process of ensuring Docker is installed and running before executing Docker-related commands. If Docker is not installed, it provides an option to install it via Homebrew.
 
 ## Documentation
 
