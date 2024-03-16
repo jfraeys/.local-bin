@@ -6,6 +6,8 @@ else
     selected=$(fd -H --full-path '/' --min-depth 1 --max-depth 3 --type d | fzf)
 fi
 
+echo $selected
+
 if [[ -z $selected ]]; then
     exit 0
 fi
