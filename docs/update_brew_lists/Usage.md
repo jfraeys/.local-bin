@@ -1,4 +1,4 @@
-## [update_brew_lists.sh](update_brew_lists.sh) 
+## [update_brew_lists.sh](../../update_brew_lists.sh) 
 
 This script automates the process of updating Homebrew and associated package lists. It can be used to keep track of installed packages and update them as needed.
 
