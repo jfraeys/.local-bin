@@ -1,4 +1,4 @@
-## [aactivator.py](.local-bin/aactivator.py)
+## [aactivator.py](../../aactivator.py)
 
 ### Usage 
 The aactivator.py script simplifies the activation and deactivation of environments in an interactive shell. Follow these steps to use it in your project:
