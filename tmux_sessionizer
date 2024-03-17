@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd --min-depth 1 --max-depth 3 --type d . "$HOME" | fzf)
+    selected=$(fd --min-depth 1 --max-depth 5 --type d . "$HOME" | fzf)
 fi
 
 if [[ -z $selected ]]; then
@@ -18,8 +18,10 @@ if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     exit 0
 fi
 
-if ! tmux has-session -t="$selected_name" 2> /dev/null; then
-    tmux new-session -ds "$selected_name" -c "$selected"
+if tmux list-windows -t "$selected_name" | grep -q "$selected_name"; then
+    tmux select-window -t "$selected_name"
+else
+    tmux new-window -t "$selected_name" -c "$selected"
 fi
 
 tmux switch-client -t "$selected_name"
