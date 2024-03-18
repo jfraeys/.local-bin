@@ -2,15 +2,21 @@
 
 if [[ $# -eq 1 ]]; then
     selected=$1
+
+    if [[ ! -d $selected ]]; then
+        echo "Invalid directory: $selected"
+        exit 1
+    fi
 else
     selected=$(fd --min-depth 1 --max-depth 5 --type d . "$HOME" | fzf)
 fi
 
 if [[ -z $selected ]]; then
+    echo "No directory selected. Exiting."
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
+selected_name=$(basename "$selected" | tr '.' '_')
 tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
@@ -18,10 +24,8 @@ if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     exit 0
 fi
 
-if tmux list-windows -t "$selected_name" | grep -q "$selected_name"; then
-    tmux select-window -t "$selected_name"
-else
-    tmux new-window -t "$selected_name" -c "$selected"
+if ! tmux has-session -t "$selected_name" 2>/dev/null; then
+    tmux new-session -d -s "$selected_name" -c "$selected"
 fi
 
 tmux switch-client -t "$selected_name"
