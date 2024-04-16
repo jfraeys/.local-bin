@@ -13,6 +13,7 @@ fd
 fzf
 gcc
 gettext
+gh
 git
 gmp
 go
@@ -91,7 +92,6 @@ firefox
 google-drive
 iterm2
 logi-options-plus
-logitune
 maccy
 microsoft-auto-update
 microsoft-teams

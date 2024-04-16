@@ -14,16 +14,16 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config --global user.email >
-          "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
           git config --global user.name "${{ github.actor }}"
 
       - name: Update update_brew_lists
         run: |
-          cp update_brew_lists .
+          # cp update_brew_lists .
           git add update_brew_lists
           git commit -m "Update update_brew_lists"
           git push
 
       - name: Update complete
         run: echo "update_brew_lists updated successfully."
+

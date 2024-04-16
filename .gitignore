@@ -1,2 +1,6 @@
 *.log
 __pycache__*
+
+brew_lists/cask_list.txt.new
+brew_lists/brewa-list.txt.new
+
