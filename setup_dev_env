@@ -87,8 +87,13 @@ if ! command_exists zsh; then
 fi
 
 # Check and install tmux
-if ! command_exists tmux; then
-    install_dependencies tmux
+# if ! command_exists tmux; then
+#     install_dependencies tmux
+# fi
+
+# Check and install Neovim
+if ! command_exists nvim; then
+    install_dependencies neovim
 fi
 
 # Install Go
@@ -132,16 +137,13 @@ esac
 
 # Create symbolic links for dotfiles
 ln -s "$DOTFILES_DIR/zsh/.zshrc" ~/.zshrc
-ln -s "$DOTFILES_DIR/tmux/.tmux.conf" ~/.tmux.conf
+# ln -s "$DOTFILES_DIR/tmux/.tmux.conf" ~/.tmux.conf
 ln -s "$DOTFILES_DIR/nvim" ~/.config/nvim
 
 # Source configurations for the current session
 source ~/.zshrc
-tmux source ~/.tmux.conf
+# tmux source ~/.tmux.conf
 
-
-# Inform the user and wait for input
-echo "Zsh, Tmux, Neovim, Go, and development tools configurations applied."
 
 # Enable notifications if the flag is set
 if [ "$ENABLE_NOTIFICATION" == true ]; then
@@ -154,3 +156,4 @@ fi
 
 # Start Zsh and Tmux
 zsh
+
