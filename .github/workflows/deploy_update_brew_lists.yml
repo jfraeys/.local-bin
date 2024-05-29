@@ -9,6 +9,7 @@ on:
     branches:
       - main
 
+
 jobs:
   update-brew-lists:
     runs-on: ubuntu-latest
