@@ -19,11 +19,14 @@ jobs:
 
       - name: Update update_brew_lists
         run: |
-          # cp update_brew_lists .
+          # Perform the necessary update steps
+          # For example, cp update_brew_lists .
           git add update_brew_lists
-          git commit -m "Update update_brew_lists"
-          git push
+          if ! git diff-index --quiet HEAD --; then
+            git commit -m "Update update_brew_lists"
+            git push
+          else
+            echo "No changes to update_brew_lists, skipping commit and push."
 
       - name: Update complete
-        run: echo "update_brew_lists updated successfully."
-
+        run: echo "update_brew_lists update process completed successfully."
