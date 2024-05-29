@@ -1,8 +1,13 @@
+---
 name: Update Brew Lists
 
+# on:
+#   schedule:
+#     - cron: '0 2 */2 * *'  # Run every two days at 2 AM
 on:
-  schedule:
-    - cron: '0 2 */2 * *'  # Run every two days at 2 AM
+  push:
+    branches:
+      - main
 
 jobs:
   update-brew-lists:
@@ -30,3 +35,4 @@ jobs:
 
       - name: Update complete
         run: echo "update_brew_lists update process completed successfully."
+
