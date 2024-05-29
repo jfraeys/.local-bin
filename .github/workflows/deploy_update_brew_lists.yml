@@ -9,6 +9,7 @@ on:
     branches:
       - main
 
+
 jobs:
   update-brew-lists:
     runs-on: ubuntu-latest
@@ -34,5 +35,6 @@ jobs:
             echo "No changes to update_brew_lists, skipping commit and push."
 
       - name: Update complete
+        if: always()
         run: echo "update_brew_lists update process completed successfully."
 
