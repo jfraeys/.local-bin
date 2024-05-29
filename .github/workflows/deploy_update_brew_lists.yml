@@ -1,8 +1,9 @@
 name: Update Brew Lists
 
-# on:
-#   schedule:
-#     - cron: '0 2 */2 * *'  # Run every two days at 2 AM
+on:
+  push:
+    branches:
+    - main
 
 jobs:
   update-brew-lists:
