@@ -33,3 +33,4 @@ jobs:
             git push
           else
             echo "No changes to update_brew_lists, skipping commit and push."
+          fi
