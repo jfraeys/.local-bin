@@ -1,14 +1,8 @@
----
 name: Update Brew Lists
 
-# on:
-#   schedule:
-#     - cron: '0 2 */2 * *'  # Run every two days at 2 AM
 on:
-  push:
-    branches:
-      - main
-
+  schedule:
+    - cron: '0 2 */2 * *'  # Run every two days at 2 AM
 
 jobs:
   update-brew-lists:
@@ -20,13 +14,12 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.email \
+            "${{ github.actor }}@users.noreply.github.com"
           git config --global user.name "${{ github.actor }}"
 
       - name: Update update_brew_lists
         run: |
-          # Perform the necessary update steps
-          # For example, cp update_brew_lists .
           git add update_brew_lists
           if ! git diff-index --quiet HEAD --; then
             git commit -m "Update update_brew_lists"
