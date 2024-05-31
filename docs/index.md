@@ -18,6 +18,8 @@ Welcome to the documentation for the `.local-bin` repository. This collection is
   - `-a` or `--disable-auto-update`: Disable Homebrew auto-updates.
   - `-n` or `--disable-notification`: Disable notifications during setup.
 - [docker_check](docker_check/Usage.md): This script automates the process of ensuring Docker is installed and running before executing Docker-related commands. If Docker is not installed, it provides an option to install it via Homebrew.
+- [add_yaml_header.sh](add_yaml_header.sh/Usage.md): This script ensures that YAML files within a specified directory contain the necessary `---` header. If a YAML file does not have the `---` header, the script adds it.
+- [wzp](wzp/Usage.md): This script automates the process of starting a new Wezterm project. It allows you to select a project from a predefined list or specify a project name as an argument.
 
 Feel free to use these scripts to simplify tasks and enhance your development workflow.
 
@@ -30,3 +32,4 @@ If you're new to .local-bin, follow these steps to get started:
 3. Explore the documentation sections to learn about each script and its usage.
 
 Happy coding!
+
