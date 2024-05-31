@@ -15,6 +15,8 @@ Welcome to the .local-bin repository! Find key components below to enhance your 
   - `-a` or `--disable-auto-update`: Disable Homebrew auto-updates.
   - `-n` or `--disable-notification`: Disable notifications during setup.
 - **[docker_check](docker_check):** This script automates the process of ensuring Docker is installed and running before executing Docker-related commands. If Docker is not installed, it provides an option to install it via Homebrew.
+- **[yaml_header_adder.sh](yaml_header_adder.sh):** This script ensures that YAML files within a specified directory contain the necessary `---` header. If a YAML file does not have the `---` header, the script adds it.
+- **[wzp.sh](wzp.sh):** This script automates the process of starting a new Wezterm project. It allows you to select a project from a predefined list or specify a project name as an argument.
 
 ## Documentation
 
