@@ -45,22 +45,19 @@ if [[ -z $selected ]]; then
     exit 0
 fi
 
-
-# selected_name=$(basename "$selected" | tr '.' '_')
-selected_name=$(basename "$selected")
+tmux_running=$(pgrep tmux)
 
 # Determine whether to use tmux or WezTerm
-if [[ -n $TMUX ]]; then
-    tmux_running=$(pgrep tmux)
-    if [[ -z $tmux_running ]]; then
-        tmux new-session -s "$selected_name" -c "$selected"
-    elif ! tmux has-session -t "$selected_name" 2>/dev/null; then
-        tmux new-session -d -s "$selected_name" -c "$selected"
+if [[ -n $TMUX ]] && [[ -n $tmux_running ]]; then
+    selected_name=$(basename "$selected" | tr '.' '_')
+    if ! tmux has-session -t=$selected_name 2> /dev/null; then
+        tmux new-session -ds $selected_name -c $selected
     fi
-    tmux switch-client -t "$selected_name"
+
+    tmux switch-client -t $selected_name
 elif command -v wezterm >/dev/null && wezterm --version | grep -q "wezterm"; then
     # tab_id=$(wezterm cli list | grep "$selected_name" | awk 'FNR == 1 {print $2}')
-    tab_id=$(wezterm cli list | grep "file://.*$selected_name" | awk 'FNR == 1 {print $2}')
+    tab_id=$(wezterm cli list | grep -w "file://.*$selected" | awk 'FNR == 1 {print $2}')
     if [[ -z $tab_id ]]; then
         wezterm cli spawn --cwd "$selected"
     else
