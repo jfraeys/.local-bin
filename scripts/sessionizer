@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 
-FZF_THEME=$($HOME/.local/bin/fzf_theme)
+FZF_THEME=$($HOME/.local/bin/scripts/fzf_theme)
 
 INCLUDED_DIRS=(
-    "$HOME/.dotfiles"
-    "$HOME/Documents/projects"
-    "$HOME/.local/bin"
+    "$HOME/.dotfiles/"
+    "$HOME/Documents/projects/"
+    "$HOME/.local/bin/"
 )
 
 # Function to find and process symlinks using xargs
@@ -18,14 +18,12 @@ search_dirs() {
         include_params+=("$dir")
     done
 
-    echo "$include_params"
-
     selected=$(
     $finder -H --min-depth 1 --max-depth 1 --type d . "${include_params[@]}" \
         | $fuzzy_finder $FZF_THEME --cycle --layout=reverse
     )
 
-    echo "selectd: $selected"
+    echo "$selected"
 }
 
 # Check if sk is installed and use it if available
