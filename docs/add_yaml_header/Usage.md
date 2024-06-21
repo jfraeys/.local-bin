@@ -1,4 +1,4 @@
-## [yaml_header_adder](../../yaml_header_adder)
+## [add_yaml_header](../../scripts/add_yaml_header.sh)
 
 This script automates the process of ensuring that YAML files within a specified directory contain the necessary `---` header. If a YAML file does not have the `---` header, the script adds it.
 
@@ -7,7 +7,7 @@ This script automates the process of ensuring that YAML files within a specified
 Run the script with the directory containing your YAML files as an argument. The script will check each file in the directory (and its subdirectories) to see if it starts with `---`. If the header is missing, the script will add it.
 
 ```bash
-./yaml_header_adder.sh <directory>
+./add_yaml_header.sh <directory>
 ```
 
 ### Example Usage
@@ -15,7 +15,7 @@ Run the script with the directory containing your YAML files as an argument. The
 Automatically add `---` headers to YAML files in the specified directory:
 
 ```bash
-./yaml_header_adder.sh /path/to/directory
+./add_yaml_header.sh /path/to/directory
 ```
 
 ## Script Details

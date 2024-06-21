@@ -1,4 +1,4 @@
-## [wzp](../../wzp)
+## [wzp](../../scripts/wzp)
 
 This script automates the process of starting a new Wezterm project. It allows you to select a project from a predefined list or specify a project name as an argument.
 

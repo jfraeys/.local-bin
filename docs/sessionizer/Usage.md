@@ -1,4 +1,4 @@
-## [sessionizer](../../sessionizer)
+## [sessionizer](../../scripts/sessionizer)
 
 This script simplifies the management of tmux sessions or WezTerm windows by providing an interactive interface to create or switch between sessions. If a session doesn't exist for a selected directory, it creates a new tmux session or a new WezTerm tab with the selected directory as the working directory.
 

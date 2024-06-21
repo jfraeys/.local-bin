@@ -1,9 +1,9 @@
-## [aactivator.py](../../aactivator.py)
+## [aactivator.py](../../scripts/aactivator.py)
 
-### Usage 
+### Usage
 The aactivator.py script simplifies the activation and deactivation of environments in an interactive shell. Follow these steps to use it in your project:
 
-### Example Usage 
+### Example Usage
 Create an activation script (.activate.sh) in your project, which activates your environment. For example, in a Python project:
 
 ```bash

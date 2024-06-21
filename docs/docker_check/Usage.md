@@ -1,4 +1,4 @@
-## [docker_check](../../docker_check)
+## [docker_check](../../scripts/docker_check)
 
 This script automates the process of ensuring Docker is installed and running before executing Docker-related commands. If Docker is not installed, it provides an option to install it via Homebrew.
 

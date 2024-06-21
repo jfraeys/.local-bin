@@ -1,4 +1,4 @@
-## [windownizer](../../windownizer)
+## [windownizer](../../scripts/windownizer)
 
 This script is designed to streamline the process of sending commands to a specific tmux window or a WezTerm tab. It takes a branch name (or any identifier) as an argument, creates a new window/tab if it doesn't exist in the current tmux session or WezTerm instance, and sends the provided command to that window/tab.
 
