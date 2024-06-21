@@ -21,7 +21,7 @@ jobs:
 
       - name: Update update_brew_lists
         run: |
-          git add update_brew_lists
+          git add scripts/update_brew_lists
           if ! git diff-index --quiet HEAD --; then
             git commit -m "Update update_brew_lists"
             git push

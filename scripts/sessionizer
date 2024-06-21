@@ -1,0 +1,74 @@
+#!/usr/bin/env sh
+
+FZF_THEME=$($HOME/.local/bin/fzf_theme)
+
+INCLUDED_DIRS=(
+    "$HOME/.dotfiles"
+    "$HOME/Documents/projects"
+    "$HOME/.local/bin"
+)
+
+# Function to find and process symlinks using xargs
+search_dirs() {
+    local finder=$1
+    local fuzzy_finder="$2"
+
+    local include_params=()
+    for dir in "${INCLUDED_DIRS[@]}"; do
+        include_params+=("$dir")
+    done
+
+    echo "$include_params"
+
+    selected=$(
+    $finder -H --min-depth 1 --max-depth 1 --type d . "${include_params[@]}" \
+        | $fuzzy_finder $FZF_THEME --cycle --layout=reverse
+    )
+
+    echo "selectd: $selected"
+}
+
+# Check if sk is installed and use it if available
+if command -v sk >/dev/null && sk --version >/dev/null 2>&1; then
+    search_dirs "fd" "sk"
+
+# Check if fzf is installed and use it if available
+elif command -v fzf >/dev/null && fzf --version >/dev/null 2>&1; then
+    search_dirs "fd" "fzf"
+
+# If neither sk nor fzf is installed, print a warning and exit
+else
+    echo "Warning: No Fuzzy finder program detected (fzf or sk). Install one or use command line arguments."
+    exit 1
+fi
+
+# Exit if no directory is selected
+if [[ -z $selected ]]; then
+    echo "No directory selected. Exiting."
+    exit 0
+fi
+
+
+# selected_name=$(basename "$selected" | tr '.' '_')
+selected_name=$(basename "$selected")
+
+# Determine whether to use tmux or WezTerm
+if [[ -n $TMUX ]]; then
+    tmux_running=$(pgrep tmux)
+    if [[ -z $tmux_running ]]; then
+        tmux new-session -s "$selected_name" -c "$selected"
+    elif ! tmux has-session -t "$selected_name" 2>/dev/null; then
+        tmux new-session -d -s "$selected_name" -c "$selected"
+    fi
+    tmux switch-client -t "$selected_name"
+elif command -v wezterm >/dev/null && wezterm --version | grep -q "wezterm"; then
+    tab_id=$(wezterm cli list | grep "$selected_name" | awk 'FNR == 1 {print $2}')
+    if [[ -z $tab_id ]]; then
+        wezterm cli spawn --cwd "$selected"
+    else
+        wezterm cli activate-tab --tab-id "$tab_id"
+    fi
+else
+    echo "Warning: No terminal multiplexer detected (tmux or WezTerm)."
+fi
+

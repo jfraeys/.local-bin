@@ -1,4 +1,4 @@
-## [wezterm_project_starter](../../wezterm_project_starter)
+## [wzp](../../wzp)
 
 This script automates the process of starting a new Wezterm project. It allows you to select a project from a predefined list or specify a project name as an argument.
 
@@ -7,7 +7,7 @@ This script automates the process of starting a new Wezterm project. It allows y
 Run the script without any arguments to select a project from the list of available projects. Alternatively, you can provide a project name as an argument to start that specific project.
 
 ```bash
-./wezterm_project_starter.sh [project_name]
+./wzp [project_name]
 ```
 
 ### Example Usage
@@ -15,13 +15,13 @@ Run the script without any arguments to select a project from the list of availa
 1. Select a project from the list:
 
 ```bash
-./wezterm_project_starter.sh
+./wzp
 ```
 
 2. Start a specific project:
 
 ```bash
-./wezterm_project_starter.sh my_project
+./wzp my_project
 ```
 
 ## Script Details
