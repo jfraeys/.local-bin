@@ -3,6 +3,7 @@
 FZF_THEME=$($HOME/.local/bin/scripts/fzf_theme)
 
 INCLUDED_DIRS=(
+    "$HOME/"
     "$HOME/.dotfiles/"
     "$HOME/Documents/projects/"
     "$HOME/.local/bin/"
@@ -20,10 +21,8 @@ search_dirs() {
 
     selected=$(
     $finder -H --min-depth 1 --max-depth 1 --type d . "${include_params[@]}" \
-        | $fuzzy_finder $FZF_THEME --cycle --layout=reverse
+        | $fuzzy_finder $FZF_THEME --cycle #--layout=reverse
     )
-
-    echo "$selected"
 }
 
 # Check if sk is installed and use it if available
@@ -60,7 +59,8 @@ if [[ -n $TMUX ]]; then
     fi
     tmux switch-client -t "$selected_name"
 elif command -v wezterm >/dev/null && wezterm --version | grep -q "wezterm"; then
-    tab_id=$(wezterm cli list | grep "$selected_name" | awk 'FNR == 1 {print $2}')
+    # tab_id=$(wezterm cli list | grep "$selected_name" | awk 'FNR == 1 {print $2}')
+    tab_id=$(wezterm cli list | grep "file://.*$selected_name" | awk 'FNR == 1 {print $2}')
     if [[ -z $tab_id ]]; then
         wezterm cli spawn --cwd "$selected"
     else
