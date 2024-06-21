@@ -8,6 +8,6 @@ This script automates the setup of a development environment by installing essen
 **Usage:**
 
 ```bash
-./setup_dev_environment.sh [-a|--disable-auto-update] [-n|--disable-notification]
+./setup_dev_environment [-a|--disable-auto-update] [-n|--disable-notification]
 ```
 
