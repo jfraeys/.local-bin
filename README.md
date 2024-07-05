@@ -17,6 +17,7 @@ Welcome to the .local-bin repository! Find key components below to enhance your 
 - **[docker_check](scripts/docker_check):** This script automates the process of ensuring Docker is installed and running before executing Docker-related commands. If Docker is not installed, it provides an option to install it via Homebrew.
 - **[add_yaml_header](scripts/add_yaml_header):** This script ensures that YAML files within a specified directory contain the necessary `---` header. If a YAML file does not have the `---` header, the script adds it.
 - **[wzp](scripts/wzp):** This script automates the process of starting a new Wezterm project. It allows you to select a project from a predefined list or specify a project name as an argument.
+- **[volumizer](scripts/volumizer):** This script manages volume levels on macOS and Linux systems. It limits the volume to a specified maximum when headphones are connected, protecting users' hearing. It integrates notifications to alert users of volume changes and headphone status seamlessly.
 
 ## Documentation
 

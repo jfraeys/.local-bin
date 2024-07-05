@@ -1,32 +1,32 @@
-#!/usr/bin/env bash
-
 set_fzf_theme() {
+    local appearance="$1"
+
     # Detect the current system appearance (Light or Dark mode) for Linux and macOS
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        # macOS
-        APPEARANCE=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
-    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        # Linux
-        APPEARANCE=$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null)
-    else
-        # Default to Light mode if the system is not recognized
-        APPEARANCE="Dark"
+    if [[ -z "$appearance" ]]; then
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            # macOS
+            appearance=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
+        elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+            # Linux (assuming GNOME)
+            appearance=$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null)
+        else
+            # Default to Dark mode if the system is not recognized
+            appearance="Dark"
+        fi
     fi
 
-    # Set fzf theme based on system appearance
-    if [[ $APPEARANCE == *"Dark"* || -n "$TMUX" ]]; then
-        FZF_THEME="--color=bg+:#1e1e1e,bg:#1e1e1e,spinner:#d33682,hl:#b58900,fg:#ffffff,header:#d33682,info:#268bd2,pointer:#859900,marker:#859900,fg+:#ffffff,prompt:#268bd2,hl+:#b58900"
+    # Set fzf theme based on appearance
+    if [[ $appearance == *"Dark"* || -n "$TMUX" ]]; then
+        FZF_DEFAULT_OPTS="--color=bg+:#1e1e1e,bg:#1e1e1e,spinner:#d33682,hl:#b58900,fg:#ffffff,header:#d33682,info:#268bd2,pointer:#859900,marker:#859900,fg+:#ffffff,prompt:#268bd2,hl+:#b58900"
     else
-        # FZF_THEME="--color=bg+:#fdf6e3,bg:#fdf6e3,spinner:#d33682,hl:#b58900,fg:#657b83,header:#d33682,info:#268bd2,pointer:#859900,marker:#859900,fg+:#657b83,prompt:#268bd2,hl+:#b58900"
-
-        FZF_THEME="--color=bg+:#fdf6e3,bg:#fdf6e3,spinner:#d33682,hl:#b58900,fg:#657b83,header:#d33682,info:#268bd2,pointer:#859900,marker:#859900,fg+:#657b83,prompt:#268bd2,hl+:#b58900"
+        FZF_DEFAULT_OPTS="--color=bg+:#fdf6e3,bg:#fdf6e3,spinner:#d33682,hl:#b58900,fg:#657b83,header:#d33682,info:#268bd2,pointer:#859900,marker:#859900,fg+:#657b83,prompt:#268bd2,hl+:#b58900"
     fi
 
-    echo "$FZF_THEME"
+    # export FZF_DEFAULT_OPTS
+
+    echo "$FZF_DEFAULT_OPTS"
 }
 
-# If sourced directly, set FZF_THEME
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    set_fzf_theme
-fi
+# Call the function to set FZF_DEFAULT_OPTS
+set_fzf_theme "$1"
 

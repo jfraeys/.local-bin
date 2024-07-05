@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 BREW_PREFIX="/usr/local/bin/"
 BREW_LIST_DIR="$HOME/.local/bin/.brew_lists"
@@ -111,3 +111,4 @@ if are_lists_different "$NEW_BREW_LIST" "$BREW_LIST" || are_lists_different "$NE
     # Commit changes to Git
     commit_to_git
 fi
+
