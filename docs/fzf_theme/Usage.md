@@ -2,7 +2,7 @@
 
 ## **Overview**
 
-The `fzf_themen` script configures the `fzf` color theme based on the system's appearance mode (Light or Dark). It is compatible with macOS and Linux systems, adjusting the `fzf` theme colors to ensure optimal visibility and aesthetics.
+The `fzf_theme` script configures the `fzf` color theme based on the system's appearance mode (Light or Dark). It is compatible with macOS and Linux systems, adjusting the `fzf` theme colors to ensure optimal visibility and aesthetics.
 
 ## **Usage**
 
@@ -11,7 +11,7 @@ The `fzf_themen` script configures the `fzf` color theme based on the system's a
 To automatically detect the system's appearance mode and apply the corresponding `fzf` theme, run:
 
 ```bash
-./fzf_themen.sh
+./fzf_theme.sh
 ```
 
 ### **Custom Appearance Mode**
@@ -19,13 +19,13 @@ To automatically detect the system's appearance mode and apply the corresponding
 To override the automatic detection and set a specific appearance mode, provide either `Light` or `Dark` as an argument:
 
 ```bash
-./fzf_themen.sh Light
+./fzf_theme.sh Light
 ```
 
 or
 
 ```bash
-./fzf_themen.sh Dark
+./fzf_theme.sh Dark
 ```
 
 ### **Example**
@@ -33,7 +33,7 @@ or
 To use the script's output for configuring `fzf`, you can capture the `FZF_DEFAULT_OPTS` and use it as follows:
 
 ```bash
-export FZF_DEFAULT_OPTS="$(./fzf_themen.sh)"
+export FZF_DEFAULT_OPTS="$(./fzf_theme.sh)"
 fzf --preview "echo 'Preview content'"
 ```
 
