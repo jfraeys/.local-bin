@@ -3,27 +3,52 @@
 FZF_THEME=$($HOME/.local/bin/scripts/fzf_theme)
 
 INCLUDED_DIRS=(
-    "$HOME/"
+    # "$HOME/"
     "$HOME/.dotfiles/"
     "$HOME/Documents/projects/"
     "$HOME/.local/bin/"
+    "$HOME/Google Drive/My Drive/"
 )
 
 # Function to find and process symlinks using xargs
 search_dirs() {
     local finder=$1
     local fuzzy_finder="$2"
-
     local include_params=()
+
     for dir in "${INCLUDED_DIRS[@]}"; do
         include_params+=("$dir")
     done
 
+    # Use find command to search directories efficiently
+    all_dirs=$(
+        {
+            $finder -H --max-depth 1 --type d . "$HOME"
+            $finder -H --min-depth 1 --max-depth 3 --type d . "${include_params[@]}"
+        } | sort | uniq
+    )
+
     selected=$(
-    $finder -H --min-depth 1 --max-depth 1 --type d . "${include_params[@]}" \
-        | $fuzzy_finder $FZF_THEME --cycle #--layout=reverse
+        echo "$all_dirs" | $fuzzy_finder $FZF_THEME --cycle --preview 'ls -la {}'
     )
 }
+
+# search_dirs() {
+#     local finder=$1
+#     local fuzzy_finder="$2"
+#     local include_params=()
+#
+#     for dir in "${INCLUDED_DIRS[@]}"; do
+#         include_params+=("$dir")
+#     done
+#
+#     # Use a single find command with combined parameters
+#     all_dirs=$(find "$HOME" -maxdepth 3 -type d \( $(printf -- '-path %s -o ' "${include_params[@]}" | sed 's/ -o $//') \) -print | sort -u | sed "s|^$HOME|~|")
+#
+#     # Perform fuzzy search
+#     selected=$(echo "$all_dirs" | sed "s|^~|$HOME|" | fzf $FZF_THEME --cycle --preview 'ls -la {}')
+# }
+
 
 # Check if sk is installed and use it if available
 if command -v sk >/dev/null && sk --version >/dev/null 2>&1; then

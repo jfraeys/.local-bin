@@ -2,12 +2,12 @@
 
 # Wezterm Project - Start a new wezterm project
 PROJECTS_DIR="$HOME/.config/wezterm/projects"
-FZF_THEME=$($HOME/.local/bin/fzf_theme)
+FZF_THEME=$($HOME/.local/bin/scripts/fzf_theme)
 project=""
 
 if [[ -z "$1" ]]; then
     # List all files in projects directory. Only keep the file name without the extension
-    project=$(fd -d 1 -e lua -t f -t l . "$PROJECTS_DIR" --print0 | xargs -0 -n 1 basename | sed 's/\.lua$//' | fzf $FZF_THEME --cycle --layout=reverse)
+    project=$(fd -d 1 -e lua -t f -t l . "$PROJECTS_DIR" --print0 | xargs -0 -n 1 basename | sed 's/\.lua$//' | fzf $FZF_THEME --cycle --no-info --layout=reverse)
 else
     if [[ ! -e "$PROJECTS_DIR/$1.lua" ]]; then
         echo "The project file '$PROJECTS_DIR/$1.lua' does not exist"

@@ -8,8 +8,11 @@ ca-certificates
 cairo
 coreutils
 curl
+ddgr
 docker
 docker-completion
+dog
+eza
 fd
 fontconfig
 freetype
@@ -56,6 +59,7 @@ little-cms2
 lpeg
 lua
 luajit
+luarocks
 luv
 lz4
 lzo
@@ -91,6 +95,7 @@ rtmpdump
 sk
 skhd
 sqlite
+starship
 stow
 tmux
 tree
@@ -110,14 +115,16 @@ drawio
 firefox
 font-symbols-only-nerd-font
 google-drive
+hiddenbar
+insomnia
 logi-options-plus
 maccy
 miniforge
-postman
+mos
 pycharm
 raycast
-spaceid
 spotify
 vscodium
 wezterm
+zoom
 zotero

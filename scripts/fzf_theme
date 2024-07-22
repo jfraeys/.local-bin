@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 set_fzf_theme() {
     local appearance="$1"
 

@@ -80,7 +80,7 @@ handle_auto_update() {
 }
 
 # Function to install and configure zsh
-install_and_configure_zsh() {
+install_and_configure_shell() {
     if ! command_exists zsh; then
         install_dependencies "$PACKAGE_MANAGER" zsh
         if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -109,6 +109,19 @@ install_programming_languages() {
     esac
 }
 
+# Function to install MesloLGS Nerd Font
+install_meslolgs_nerd_font() {
+    if [ ! -f "$HOME/.local/share/fonts/MesloLGS NF Regular.tff" ]; then
+        mkdir -p ~/.local/share/fonts
+        cd ~/.local/share/fonts
+        curl -fLo "MesloLGS NF Regular.ttf" https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+        unzip Meslo.zip -d meslo
+        mv meslo/*.ttf ~/.local/share/fonts/
+        rm -rf Meslo.zip meslo
+        fc-cache -f -v
+    fi
+}
+
 # Function to display installed dependencies
 show_installed_dependencies() {
     echo "Installed dependencies:"
@@ -117,14 +130,15 @@ show_installed_dependencies() {
     done
 }
 
-# Function to start Zsh if installed
+# Function to start shell
 start_shell() {
-    if command_exists zsh; then
+    if command -v zsh &> /dev/null; then
         zsh
+    elif command -v bash &> /dev/null; then
+        bash
     else
-        echo "Zsh is not installed. Please install it manually."
-    fi
-}
+        echo "Neither zsh nor bash is installed. Please install one of them manually."
+    fi}
 
 # Default values for flags
 ENABLE_AUTO_UPDATE=true
@@ -145,8 +159,11 @@ done
 set_package_manager
 handle_auto_update
 install_essential_tools
-install_and_configure_zsh
+install_and_configure_shell
 install_programming_languages
+
+# Install MesloLGS Nerd Font
+install_meslolgs_nerd_font
 
 # Install dependencies from provided file if specified
 if [ -n "$DEPENDENCIES_FILE" ]; then
