@@ -18,7 +18,7 @@ Welcome to the .local-bin repository! Find key components below to enhance your 
 - **[add_yaml_header](scripts/add_yaml_header):** This script ensures that YAML files within a specified directory contain the necessary `---` header. If a YAML file does not have the `---` header, the script adds it.
 - **[wzp](scripts/wzp):** This script automates the process of starting a new Wezterm project. It allows you to select a project from a predefined list or specify a project name as an argument.
 - **[volumizer](scripts/volumizer):** This script manages volume levels on macOS and Linux systems. It limits the volume to a specified maximum when headphones are connected, protecting users' hearing. It integrates notifications to alert users of volume changes and headphone status seamlessly.
-- **[set_fzf_theme](scripts/set_fzf_theme):** This script configures the `fzf` color theme based on the system's appearance mode (Light or Dark) for both macOS and Linux systems. It automatically detects the system's appearance or can be overridden with a specified mode, adjusting the `fzf` theme colors accordingly.
+- **[set_fzf_theme](scripts/fzf_theme):** This script configures the `fzf` color theme based on the system's appearance mode (Light or Dark) for both macOS and Linux systems. It automatically detects the system's appearance or can be overridden with a specified mode, adjusting the `fzf` theme colors accordingly.
 
 ## Documentation
 
