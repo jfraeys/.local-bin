@@ -19,7 +19,7 @@ set_fzf_theme() {
 
     # Set fzf theme based on appearance
     if [[ $appearance == *"Dark"* || -n "$TMUX" ]]; then
-        FZF_DEFAULT_OPTS="--color=bg+:#1e1e1e,bg:#1e1e1e,spinner:#d33682,hl:#b58900,fg:#ffffff,header:#d33682,info:#268bd2,pointer:#859900,marker:#859900,fg+:#ffffff,prompt:#268bd2,hl+:#b58900"
+        FZF_DEFAULT_OPTS="--color=bg+:#272822,bg:#272822,spinner:#f92672,hl:#66d9ee,fg:#f8f8f2,header:#f92672,info:#66d9ee,pointer:#a6e22e,marker:#a6e22e,fg+:#f8f8f2,prompt:#66d9ee,hl+:#66d9ee"
     else
         FZF_DEFAULT_OPTS="--color=bg+:#fdf6e3,bg:#fdf6e3,spinner:#d33682,hl:#b58900,fg:#657b83,header:#d33682,info:#268bd2,pointer:#859900,marker:#859900,fg+:#657b83,prompt:#268bd2,hl+:#b58900"
     fi
