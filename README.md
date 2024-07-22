@@ -8,8 +8,8 @@ Welcome to the .local-bin repository! Find key components below to enhance your 
 ## Binary Files
 
 - **[aactivator.py](scripts/aactivator.py):** A powerful script designed to automate the sourcing of environments in an interactive shell. Activate it effortlessly by evaluating `$(aactivator init)` in your shell.
-- **[tmux_sessionizer](scripts/tmux_sessionizer):** This script simplifies the management of tmux sessions by providing an interactive interface to create or switch between sessions. If a session doesn't exist for a selected directory, it creates a new tmux session with the selected directory as the working directory.
-- **[tmux_windownizer](scripts/tmux_windownizer):** This script is designed to streamline the process of sending commands to a specific tmux window. It takes a branch name (or any identifier) as an argument, creates a new window if it doesn't exist in the current tmux session, and sends the provided command to that window.
+- **[sessionizer](scripts/sessionizer):** This script simplifies the management of tmux sessions by providing an interactive interface to create or switch between sessions. If a session doesn't exist for a selected directory, it creates a new tmux session with the selected directory as the working directory.
+- **[windownizer](scripts/windownizer):** This script is designed to streamline the process of sending commands to a specific tmux window. It takes a branch name (or any identifier) as an argument, creates a new window if it doesn't exist in the current tmux session, and sends the provided command to that window.
 - **[update_brew_lists](scripts/update_brew_lists):** This script automates the process of updating Homebrew and associated package lists. It can be used to keep track of installed packages and update them as needed.
 - **[setup_dev_environment](scripts/setup_dev_env):** This script automates the setup of a development environment by installing essential tools, configuring common settings, and providing options for customization. It supports the following options:
   - `-a` or `--disable-auto-update`: Disable Homebrew auto-updates.
