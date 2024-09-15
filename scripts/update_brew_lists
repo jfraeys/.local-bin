@@ -2,32 +2,31 @@
 
 BREW_PREFIX="/usr/local/bin/"
 BREW_LIST_DIR="$HOME/.local/bin/.brew_lists"
-CASK_LIST_DIR="$HOME/.local/bin/.brew_lists"
 BREW_LIST="$BREW_LIST_DIR/brew_list.txt"
-CASK_LIST="$CASK_LIST_DIR/cask_list.txt"
+CASK_LIST="$BREW_LIST_DIR/cask_list.txt"
 NEW_BREW_LIST="$BREW_LIST_DIR/brew_list.txt.new"
-NEW_CASK_LIST="$CASK_LIST_DIR/cask_list.txt.new"
+NEW_CASK_LIST="$BREW_LIST_DIR/cask_list.txt.new"
 
 # Function to check if the lists are different
 are_lists_different() {
-    diff -q "$1" "$2" &> /dev/null
+    diff -q "$1" "$2" &>/dev/null
 }
 
 # Function to update the brew and cask lists
 update_lists() {
     echo "Updating brew list..."
-    "$BREW_PREFIX"brew list > "$NEW_BREW_LIST"
+    "$BREW_PREFIX"brew list --formula >"$NEW_BREW_LIST"
     chmod 664 "$NEW_BREW_LIST"
 
     echo "Updating cask list..."
-    "$BREW_PREFIX"brew list --cask > "$NEW_CASK_LIST"
+    "$BREW_PREFIX"brew list --cask >"$NEW_CASK_LIST"
     chmod 664 "$NEW_CASK_LIST"
 }
 
 # Function to install Homebrew and packages
 install_packages() {
     # Install Homebrew if not installed
-    if ! command -v "$BREW_PREFIX"brew &> /dev/null; then
+    if ! command -v "$BREW_PREFIX"brew &>/dev/null; then
         echo "Installing Homebrew..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
@@ -35,14 +34,14 @@ install_packages() {
     # Install brew packages
     if [ -s "$BREW_LIST" ]; then
         echo "Installing brew packages..."
-        xargs "$BREW_PREFIX"brew install < "$BREW_LIST"
+        xargs "$BREW_PREFIX"brew install <"$BREW_LIST"
         echo "Brew packages installed successfully."
     fi
 
     # Install cask packages
     if [ -s "$CASK_LIST" ]; then
         echo "Installing cask packages..."
-        xargs "$BREW_PREFIX"brew install --cask < "$CASK_LIST"
+        xargs "$BREW_PREFIX"brew install --cask <"$CASK_LIST"
         echo "Cask packages installed successfully."
     fi
 }
@@ -60,7 +59,7 @@ save_lists() {
 # Function to commit changes to Git
 commit_to_git() {
     current_dir=$PWD
-    cd $HOME/.local/bin || exit
+    cd "$HOME"/.local/bin || exit
     git pull
     git add "$BREW_LIST" "$CASK_LIST"
     git commit -m "Update brew lists"
@@ -71,22 +70,22 @@ commit_to_git() {
 # Check command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --install)
-            install_packages
-            exit 0
-            ;;
-        --save-brew-dir)
-            shift
-            "$BREW_PREFIX"brew autoupdate start
-            ;;
-        --save-cask-dir)
-            shift
-            CASK_LIST_DIR="$1"
-            ;;
-        *)
-            echo "Invalid argument: $1"
-            exit 1
-            ;;
+    --install)
+        install_packages
+        exit 0
+        ;;
+    --save-brew-dir)
+        shift
+        "$BREW_PREFIX"brew autoupdate start
+        ;;
+    --save-cask-dir)
+        shift
+        CASK_LIST_DIR="$1"
+        ;;
+    *)
+        echo "Invalid argument: $1"
+        exit 1
+        ;;
     esac
     shift
 done

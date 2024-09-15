@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-APP_NAME="Volumizer"
 MAX_VOLUME=50
 ONLY_ON_HEADPHONES=false
 NOTIFICATION_TITLE="Volume Limiter"
@@ -27,12 +26,12 @@ display_notification_macos() {
         local last_notification
         last_notification=$(cat "$notification_file")
         if [[ "$last_notification" == "$subtitle" ]]; then
-            return 0  # Notification already displayed
+            return 0 # Notification already displayed
         fi
     fi
 
     osascript -e "display notification \"$subtitle\" with title \"$title\""
-    echo "$subtitle" > "$notification_file"
+    echo "$subtitle" >"$notification_file"
 }
 
 # Function to check if output is on internal speakers on macOS
@@ -68,12 +67,12 @@ display_notification_linux() {
         local last_notification
         last_notification=$(cat "$notification_file")
         if [[ "$last_notification" == "$subtitle" ]]; then
-            return 0  # Notification already displayed
+            return 0 # Notification already displayed
         fi
     fi
 
     notify-send "$title" "$subtitle"
-    echo "$subtitle" > "$notification_file"
+    echo "$subtitle" >"$notification_file"
 }
 
 # Function to check if output is on internal speakers on Linux
@@ -92,7 +91,7 @@ check_headphones() {
         else
             if [ "$HEADPHONES_CONNECTED" = false ]; then
                 HEADPHONES_CONNECTED=true
-                $limit_volume
+                limit_volume
                 $display_notification "$NOTIFICATION_TITLE" "Limiting your 🎧 headphones to $MAX_VOLUME% to protect your ears"
             fi
         fi
@@ -132,39 +131,39 @@ fi
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --headphones-only)
-            ONLY_ON_HEADPHONES=true
-            shift
-            ;;
-        --max-volume)
-            if [[ "$2" =~ ^[0-9]+$ && "$2" -ge 0 && "$2" -le 100 ]]; then
-                MAX_VOLUME="$2"
-                shift 2
-            else
-                echo "Error: --max-volume must be followed by a valid percentage (0-100)."
-                exit 1
-            fi
-            ;;
-        --delay)
-            if [[ "$2" =~ ^[0-9]+$ && "$2" -gt 0 ]]; then
-                DELAY="$2"
-                shift 2
-            else
-                echo "Error: --delay must be followed by a valid positive integer."
-                exit 1
-            fi
-            ;;
-        *)
-            echo "Usage: $0 [--headphones-only] [--max-volume <percentage>] [--delay <seconds>] [--macos | --linux]"
+    --headphones-only)
+        ONLY_ON_HEADPHONES=true
+        shift
+        ;;
+    --max-volume)
+        if [[ "$2" =~ ^[0-9]+$ && "$2" -ge 0 && "$2" -le 100 ]]; then
+            MAX_VOLUME="$2"
+            shift 2
+        else
+            echo "Error: --max-volume must be followed by a valid percentage (0-100)."
             exit 1
-            ;;
+        fi
+        ;;
+    --delay)
+        if [[ "$2" =~ ^[0-9]+$ && "$2" -gt 0 ]]; then
+            DELAY="$2"
+            shift 2
+        else
+            echo "Error: --delay must be followed by a valid positive integer."
+            exit 1
+        fi
+        ;;
+    *)
+        echo "Usage: $0 [--headphones-only] [--max-volume <percentage>] [--delay <seconds>] [--macos | --linux]"
+        exit 1
+        ;;
     esac
 done
 
-for (( i=1; i<=$((60/DELAY)); i++ )); do
+for ((i = 1; i <= $((60 / DELAY)); i++)); do
     check_headphones
     limit_volume
 
-    sleep $DELAY
+    sleep "$DELAY"
 done
 

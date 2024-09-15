@@ -4,13 +4,13 @@
 start_docker() {
     echo "Docker is not running. Starting Docker..."
     open --background -a Docker
-    sleep 3  # Wait for Docker to start
+    sleep 3 # Wait for Docker to start
 }
 
 # Check if Docker is installed
-install_docker(){
+install_docker() {
     echo "Docker is not installed."
-    read -p "Do you want to install Docker using Homebrew? (y/n): " choice
+    read -rp "Do you want to install Docker using Homebrew? (y/n): " choice
     if [ "$choice" == "y" ]; then
         brew install --cask docker
         echo "Docker has been installed. Please restart this script."
@@ -24,7 +24,7 @@ install_docker(){
 # Check if docker-compose is installed
 install_docker_compose() {
     echo "docker-compose is not installed."
-    read -p "Do you want to install docker-compose using Homebrew? (y/n): " choise
+    read -rp "Do you want to install docker-compose using Homebrew? (y/n): " choice
     if [ "$choice" == "y" ]; then
         brew install docker-compose
         echo "Docker has been installed. Please restart this script."
@@ -35,7 +35,7 @@ install_docker_compose() {
     fi
 }
 
-if ! command -v docker &> /dev/null; then
+if ! command -v docker &>/dev/null; then
     install_docker
 fi
 
@@ -48,7 +48,7 @@ fi
 if [ "$1" == "docker-compose" ]; then
     # If docker-compose is called, check if Docker is running again
     if [ "$(docker info >/dev/null 2>&1 && echo "running")" != "running" ]; then
-        if ! command -v docker-compose &> /dev/null; then
+        if ! command -v docker-compose &>/dev/null; then
             start_docker
         fi
     fi

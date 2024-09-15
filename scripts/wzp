@@ -1,25 +1,25 @@
 #!/usr/bin/env bash
 
-# Wezterm Project - Start a new wezterm project
-PROJECTS_DIR="$HOME/.config/wezterm/projects"
-FZF_THEME=$($HOME/.local/bin/scripts/fzf_theme)
-project=""
+# WezTerm Project - Start a new WezTerm profile
+PROFILES_DIR="$HOME/.config/wezterm/profiles/"
+FZF_THEME=$("$HOME"/.local/bin/scripts/fzf_theme)
+profile=""
 
 if [[ -z "$1" ]]; then
-    # List all files in projects directory. Only keep the file name without the extension
-    project=$(fd -d 1 -e lua -t f -t l . "$PROJECTS_DIR" --print0 | xargs -0 -n 1 basename | sed 's/\.lua$//' | fzf $FZF_THEME --cycle --no-info --layout=reverse)
+    # List all Lua files in the projects directory and prompt for selection
+    profile=$(fd -d 1 -e lua -t f . "$PROFILES_DIR" --print0 | xargs -0 -n 1 basename | sed 's/\.lua$//' | fzf "$FZF_THEME" --cycle --no-info --layout=reverse)
 else
-    if [[ ! -e "$PROJECTS_DIR/$1.lua" ]]; then
-        echo "The project file '$PROJECTS_DIR/$1.lua' does not exist"
+    if [[ ! -e "$PROFILES_DIR/$1.lua" ]]; then
+        echo "The profile file '$PROFILES_DIR/$1.lua' does not exist"
         exit 1
     fi
-    project="$1"
+    profile="$1"
 fi
 
-if [[ -z $project ]]; then
-    echo "No project selected"
+if [[ -z $profile ]]; then
+    echo "No profile selected"
     exit 1
 fi
 
-WZ_PROJECT="$project" wezterm start --always-new-process &
-
+# Start WezTerm with the selected project profile
+WZ_PROFILE="$profile" wezterm start --always-new-process >/dev/null 2>&1 &
