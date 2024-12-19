@@ -69,20 +69,22 @@ handle_terminal() {
     local selected="$1"
     local selected_name
 
+    selected_name=$(basename "$selected" | tr '.' '_')
+    local full_path="${selected/#\~/$HOME}"
+
     if pgrep -x tmux >/dev/null && [[ -n "$TMUX" ]]; then
-        selected_name=$(basename "$selected" | tr '.' '_')
         if ! tmux has-session -t="$selected_name" 2>/dev/null; then
             tmux new-session -ds "$selected_name" -c "$selected"
         fi
         tmux switch-client -t "$selected_name"
     elif command -v wezterm >/dev/null && wezterm --version | grep -q "wezterm"; then
-        local tab_id
-        tab_id=$(wezterm cli list | awk -v selected="$selected" 'match($0, "file://.*" selected) {print $2; exit}')
-        if [[ -z $tab_id ]]; then
-            wezterm cli spawn --cwd "$selected"
-        else
-            wezterm cli activate-tab --tab-id "$tab_id"
+        local workspace_exists
+        workspace_exists=$(wezterm cli list-workspaces | grep -w "$selected_name")
+
+        if [[ -z $workspace_exists ]]; then
+            wezterm cli create-workspace --name "$selected_name" --cwd "$full_path" # Create a new workspace
         fi
+        wezterm cli switch-to-workspace --name "$selected_name"
     else
         echo "Warning: No terminal multiplexer detected (tmux or WezTerm)." >&2
         exit 1

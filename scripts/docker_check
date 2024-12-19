@@ -56,4 +56,3 @@ fi
 
 # Run the provided command
 "$@"
-

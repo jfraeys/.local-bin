@@ -17,18 +17,19 @@ set_fzf_theme() {
         fi
     fi
 
-    # Set fzf theme based on appearance
+    # Set FZF theme based on appearance
     if [[ $appearance == *"Dark"* || -n "$TMUX" ]]; then
-        FZF_DEFAULT_OPTS="--color=bg+:#272822,bg:#272822,spinner:#f92672,hl:#66d9ee,fg:#f8f8f2,header:#f92672,info:#66d9ee,pointer:#a6e22e,marker:#a6e22e,fg+:#f8f8f2,prompt:#66d9ee,hl+:#66d9ee"
+        # Monokai (Dark Theme) with slight adjustments
+        FZF_DEFAULT_OPTS="--color=bg+:#272822,bg:#272822,spinner:#ff669d,hl:#66d9ee,fg:#f8f8f2,header:#ff669d,info:#66d9ee,pointer:#a6e22e,marker:#a6e22e,fg+:#e8e8e3,prompt:#66d9ee,hl+:#66d9ee"
     else
-        FZF_DEFAULT_OPTS="--color=bg+:#fdf6e3,bg:#fdf6e3,spinner:#d33682,hl:#b58900,fg:#657b83,header:#d33682,info:#268bd2,pointer:#859900,marker:#859900,fg+:#657b83,prompt:#268bd2,hl+:#b58900"
+        # Solarized Light with better contrast for readability
+        FZF_DEFAULT_OPTS="--color=bg+:#fdf6e3,bg:#fdf6e3,spinner:#d33682,hl:#cb4b16,fg:#586e75,header:#d33682,info:#268bd2,pointer:#859900,marker:#859900,fg+:#073642,prompt:#268bd2,hl+:#cb4b16"
     fi
-
-    # export FZF_DEFAULT_OPTS
 
     echo "$FZF_DEFAULT_OPTS"
 }
 
-# Call the function to set FZF_DEFAULT_OPTS
-set_fzf_theme "$1"
-
+# Call the function if executed directly
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    set_fzf_theme "$1"
+fi
