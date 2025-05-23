@@ -88,6 +88,7 @@ libxfixes
 libxi
 libxrender
 libxtst
+libyaml
 lima
 little-cms2
 lld@19
@@ -147,6 +148,7 @@ webp
 xorgproto
 xz
 yamlfmt
+yamllint
 yq
 zathura
 zathura-pdf-poppler
