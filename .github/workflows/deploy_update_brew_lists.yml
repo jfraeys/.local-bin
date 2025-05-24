@@ -3,6 +3,7 @@ name: Update Brew Lists
 on:
   schedule:
     - cron: '0 2 */2 * *' # Run every two days at 2 AM
+  workflow_dispatch:
 jobs:
   update-brew-lists:
     runs-on: ubuntu-latest
