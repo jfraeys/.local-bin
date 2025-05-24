@@ -1,27 +1,22 @@
 ---
 name: Update Brew Lists
-
 on:
   schedule:
-    - cron: '0 2 */2 * *'  # Run every two days at 2 AM
-
+    - cron: '0 2 */2 * *' # Run every two days at 2 AM
 jobs:
   update-brew-lists:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
       - name: Set up Git
         run: |
           git config --global user.email \
             "${{ github.actor }}@users.noreply.github.com"
           git config --global user.name "${{ github.actor }}"
-
       - name: Update update_brew_lists
         run: |
-          git add scripts/update_brew_lists
+          git add scripts/update_brew_lists.sh
           if ! git diff-index --quiet HEAD --; then
             git commit -m "Update update_brew_lists"
             git push
