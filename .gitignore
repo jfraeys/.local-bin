@@ -4,3 +4,5 @@ __pycache__*
 pip*
 poertry
 
+.brew_lists/*.new.txt
+

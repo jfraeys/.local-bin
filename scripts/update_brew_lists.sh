@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
 
-BREW_CMD="$HOMEBREW_PREFIX"/bin/brew
+# Make sure HOMEBREW_PREFIX is set, else fallback to /opt/homebrew (common default on macOS ARM)
+BREW_PREFIX="${HOMEBREW_PREFIX:-/opt/homebrew}"
+BREW_CMD="$BREW_PREFIX/bin/brew"
+
 BREW_LIST_DIR="$HOME/.local/bin/.brew_lists"
 BREW_LIST="$BREW_LIST_DIR/brew_list.txt"
 CASK_LIST="$BREW_LIST_DIR/cask_list.txt"
-NEW_BREW_LIST="$BREW_LIST_DIR/brew_list.txt.new"
-NEW_CASK_LIST="$BREW_LIST_DIR/cask_list.txt.new"
+NEW_BREW_LIST="$BREW_LIST_DIR/brew_list.new.txt"
+NEW_CASK_LIST="$BREW_LIST_DIR/cask_list.new.txt"
 
 # Function to check if the lists are different
+# Returns 0 if different, 1 if same
 are_lists_different() {
-	diff -q "$1" "$2" &>/dev/null
+	diff -q "$1" "$2" >/dev/null 2>&1
+	return $((!$?)) # invert diff exit code because diff returns 0 if files same
 }
 
 # Function to update the brew and cask lists
@@ -26,7 +31,7 @@ update_lists() {
 # Function to install Homebrew and packages
 install_packages() {
 	# Install Homebrew if not installed
-	if ! command -v "$BREW_PREFIX"brew &>/dev/null; then
+	if ! command -v "$BREW_CMD" &>/dev/null; then
 		echo "Installing Homebrew..."
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	fi
@@ -59,10 +64,10 @@ save_lists() {
 # Function to commit changes to Git
 commit_to_git() {
 	current_dir=$PWD
-	cd "$HOME"/.local/bin || exit
+	cd "$HOME/.local/bin" || exit
 	git pull
 	git add "$BREW_LIST" "$CASK_LIST"
-	git commit -m "Update brew lists"
+	git commit -m "Update brew lists" || echo "No changes to commit"
 	git push origin main
 	cd "$current_dir" || exit
 }
@@ -76,7 +81,7 @@ while [[ $# -gt 0 ]]; do
 		;;
 	--save-brew-dir)
 		shift
-		"$BREW_CMD" autoupdate start
+		# This flag doesn't make sense in current script, remove or implement logic
 		;;
 	--save-cask-dir)
 		shift
@@ -90,12 +95,13 @@ while [[ $# -gt 0 ]]; do
 	shift
 done
 
-# Check if the lists directories exist, if not, create them
-if [ ! -d "$BREW_LIST_DIR" ]; then
+# Ensure brew list directory exists
+if [ -n "$BREW_LIST_DIR" ] && [ ! -d "$BREW_LIST_DIR" ]; then
 	mkdir -p "$BREW_LIST_DIR"
 fi
 
-if [ ! -d "$CASK_LIST_DIR" ]; then
+# Ensure cask list directory exists
+if [ -n "$CASK_LIST_DIR" ] && [ ! -d "$CASK_LIST_DIR" ]; then
 	mkdir -p "$CASK_LIST_DIR"
 fi
 
@@ -109,4 +115,6 @@ if are_lists_different "$NEW_BREW_LIST" "$BREW_LIST" || are_lists_different "$NE
 
 	# Commit changes to Git
 	commit_to_git
+else
+	echo "No changes in brew or cask lists detected."
 fi
