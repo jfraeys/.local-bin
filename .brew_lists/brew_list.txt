@@ -1,4 +1,5 @@
 adwaita-icon-theme
+ansible
 at-spi2-core
 autoconf
 bat
@@ -7,8 +8,10 @@ brotli
 ca-certificates
 cairo
 certifi
+cffi
 cmake
 colima
+cryptography
 curl
 dbus
 desktop-file-utils
@@ -73,6 +76,8 @@ libnotify
 libpng
 libpthread-stubs
 librsvg
+libsodium
+libssh
 libssh2
 libtasn1
 libtiff
@@ -123,6 +128,7 @@ pinentry
 pixman
 pkgconf
 poppler
+pycparser
 pyenv
 python@3.13
 readline
