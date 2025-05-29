@@ -138,6 +138,7 @@ rustup
 sd
 shpotify
 sk
+sketchybar
 sphinx-doc
 sqlite
 starship
