@@ -162,5 +162,7 @@ zathura-pdf-poppler
 zig
 zoxide
 zsh
+zsh-autocomplete
+zsh-autosuggestions
 zsh-completions
 zstd
