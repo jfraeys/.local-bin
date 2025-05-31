@@ -4,6 +4,7 @@ firefox
 font-fira-code
 font-hack-nerd-font
 font-jetbrains-mono
+font-tex-gyre-termes
 google-drive
 hiddenbar
 insomnia
