@@ -2,6 +2,7 @@ adwaita-icon-theme
 ansible
 at-spi2-core
 autoconf
+bash
 bat
 bottom
 brotli
@@ -15,6 +16,7 @@ cryptography
 curl
 dbus
 desktop-file-utils
+direnv
 docker
 docker-completion
 docker-compose
@@ -109,6 +111,7 @@ m4
 mas
 meson
 mpdecimal
+nasm
 ncurses
 neovim
 nettle
@@ -125,6 +128,7 @@ pandoc
 pango
 pcre2
 pinentry
+pinentry-mac
 pixman
 pkgconf
 poppler
