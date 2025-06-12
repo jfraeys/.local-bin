@@ -4,6 +4,7 @@ at-spi2-core
 autoconf
 bash
 bat
+borders
 bottom
 brotli
 ca-certificates
