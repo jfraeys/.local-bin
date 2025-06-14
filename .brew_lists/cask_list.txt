@@ -1,5 +1,6 @@
 aerospace
 bitwarden
+cursor
 firefox
 font-fira-code
 font-hack-nerd-font
