@@ -50,6 +50,7 @@ gtk+3
 gtk-mac-integration
 harfbuzz
 hicolor-icon-theme
+icu4c@76
 icu4c@77
 intltool
 jbig2dec
