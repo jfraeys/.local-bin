@@ -151,6 +151,7 @@ starship
 stow
 tesseract
 topgrade
+trash
 tree
 tree-sitter
 unbound
