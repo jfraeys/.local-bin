@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 DOTFILES_REPO="git@github.com:jfraeys/dotfiles.git"
-DOTFILES_DIR="$HOME/.dotfiles"
+DOTFILES_DIR="${XDG_HOME:-$HOME}/dotfiles"
 
 # Function to check if a command is available
 command_exists() {
@@ -164,7 +164,6 @@ setup_macos_dock() {
 	defaults write com.apple.dock largesize -int 64
 	defaults write com.apple.dock orientation -string "left"
 	defaults write com.apple.dock mineffect -string "scale"
-	default
 }
 
 # Function to install and configure zsh

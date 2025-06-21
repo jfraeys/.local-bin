@@ -23,6 +23,7 @@ remember your answer. You can later adjust your per-project preferences in the
 
 see also: https://github.com/Yelp/aactivator
 """
+
 from __future__ import absolute_import, print_function, unicode_literals
 
 import io
@@ -55,9 +56,7 @@ else
     if ! ( echo "$PROMPT_COMMAND" | grep -Fq '{cmd}' ); then
         PROMPT_COMMAND='{cmd}; '"$PROMPT_COMMAND"
     fi
-fi""".format(
-        version=__version__, arg0=arg0, cmd=cmd, varname=ENVIRONMENT_VARIABLE
-    )
+fi""".format(version=__version__, arg0=arg0, cmd=cmd, varname=ENVIRONMENT_VARIABLE)
 
 
 def get_filesystem_id(path):
@@ -195,7 +194,7 @@ class ActivateConfig(object):
             if response.startswith("N"):
                 self.disallowed.append(path)
                 print(
-                    "aactivator will remember this: " "~/.cache/aactivator/disallowed",
+                    "aactivator will remember this: ~/.cache/aactivator/disallowed",
                     file=sys.stderr,
                 )
                 return False
@@ -207,7 +206,7 @@ class ActivateConfig(object):
             elif response.startswith("y"):
                 self.allowed.append(path)
                 print(
-                    "aactivator will remember this: " "~/.cache/aactivator/allowed",
+                    "aactivator will remember this: ~/.cache/aactivator/allowed",
                     file=sys.stderr,
                 )
                 return True
